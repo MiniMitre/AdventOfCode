@@ -1,0 +1,75 @@
+/* Topbar.css */
+.container {
+    display: flex;
+    flex-direction: row;
+    background-color: #333;
+    color: #fff;
+}
+
+.home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    font-size: calc(10px + 1vmin);
+
+    padding: 1em;
+    color: white;
+    min-width: 60px;
+
+    border-radius: 10px;
+    border-style: solid;
+    border-color:darkgray;
+}
+
+.home:hover{
+    background: darkgreen;
+    cursor: pointer;
+}
+
+.navigation{
+    display: flex;
+    justify-content: flex-start;
+    overflow-y: auto;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation img {
+    display: block;
+    height: 53px;
+}
+
+.navigation a {
+    text-decoration: none;
+    display: block;
+
+    font-size: calc(10px + 1vmin);
+    min-width: calc(60px + 1vmin);
+
+    padding: 1em;
+    color: white;
+    
+    border-radius: 10px;
+}
+
+.navigation a:hover {
+    background: #1565C0;
+}
+
+::-webkit-scrollbar {
+    height: 12px;
+}
+  
+::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 10px;
+}
+  
+::-webkit-scrollbar-track {
+    background-color: #333;
+    border-radius: 10px;
+}
