@@ -1,6 +1,7 @@
 /* Topbar.css */
-.container {
+.topbar {
     display: flex;
+    align-items: center;
     flex-direction: row;
     background-color: #333;
     color: #fff;
@@ -8,7 +9,6 @@
 
 .home{
     display: flex;
-    align-items: center;
     justify-content: center;
 
     text-decoration: none;
@@ -17,30 +17,33 @@
     padding: 1em;
     color: white;
     min-width: 60px;
+    max-height: 35px;
+
+    padding: 5px 15px;
 
     border-radius: 10px;
     border-style: solid;
     border-color:darkgray;
+    
+    margin: 0.5em;
 }
 
-.home:hover{
-    background: darkgreen;
+.day{
+    text-align: center;
+}
+
+.home:not(.active):hover{
     cursor: pointer;
+    background-color: #1565C0;
 }
 
 .navigation{
     display: flex;
-    justify-content: flex-start;
     overflow-y: auto;
 
     list-style: none;
     margin: 0;
     padding: 0;
-}
-
-.navigation img {
-    display: block;
-    height: 53px;
 }
 
 .navigation a {
@@ -50,14 +53,20 @@
     font-size: calc(10px + 1vmin);
     min-width: calc(60px + 1vmin);
 
-    padding: 1em;
+    padding: 0.5em;
     color: white;
     
     border-radius: 10px;
+    margin: 0.5em;
 }
 
-.navigation a:hover {
+.navigation a:not(.active):hover {
     background: #1565C0;
+}
+
+.active {
+    font-weight: bold;
+    background: darkgreen;
 }
 
 ::-webkit-scrollbar {
