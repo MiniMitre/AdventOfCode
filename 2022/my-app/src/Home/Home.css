@@ -1,9 +1,7 @@
 .App-body {
+  text-align: center;
     padding: 2rem;
     background-color: #282c34;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     font-size: calc(10px + 2vmin);
     color: white;
   }
@@ -12,4 +10,9 @@
     color: lightblue;
     text-decoration: none;
     display: inline;
+}
+
+.App-body img {
+  background-color: #00012e;
+  width: min(100%,1080px);
 }

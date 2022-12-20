@@ -1,26 +1,95 @@
 .container{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    margin: 0 2rem;
     background-color: #333;
     color: #fff;
 }
 
-.container iframe{
-    width: calc(100vw - 20px);
+.input{
+    grid-column-start: 1;
+    text-align: center;
+}
+
+.input-text{
+    padding: 4px;
+    border: 1px solid #555;
+    background-color: #222;
+}
+
+.input p{
+    margin: 0;
+}
+
+h1{
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+}
+
+.iframe{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    text-align: center;
+}
+
+.example{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    border-bottom: 2px solid #DDD;
+}
+
+.iframe iframe{
+    width: min(calc(100vw - 4rem),1920px);
     height: calc(100vh/4 + 50px);
 }
 
-.container iframe::-webkit-scrollbar {
-    height: 12px;
+.elves{
+    grid-column: 2;
+    text-align: center;
+    align-items: center;
+    margin: auto;
 }
-  
-.container iframe::-webkit-scrollbar-thumb {
-    background-color: #555;
-    border-radius: 10px;
+
+th, td {
+    padding: 15px;
+  }
+
+.sum{
+    font-weight: bold;
 }
-  
-.container iframe::-webkit-scrollbar-track {
-    background-color: #333;
-    border-radius: 10px;
+
+.sum td{
+    border-top:1px solid #555;
+}
+
+table {
+    border-spacing: 0;
+}
+
+.explanation{
+    border-top: 2px solid #DDD;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+code{
+    background-color: #222;
+    font-size: smaller;
+    padding: 2px 5px;
+    outline: 1px solid #555;
+}
+
+.TypeScript{
+    font-size:x-large;
+    width: fit-content;
+    background-color: #222;
+    padding: 2px 5px;
+    outline: 1px solid #555;
+}
+
+.typescript p{
+    margin: 0;
 }

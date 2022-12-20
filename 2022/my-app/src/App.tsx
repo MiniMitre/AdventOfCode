@@ -39,7 +39,6 @@ function App() {
         <Route path='/day-23' element={<Day />}></Route>
         <Route path='/day-24' element={<Day />}></Route>
         <Route path='/day-25' element={<Day />}></Route>
-
       </Routes>
     </>
   );
