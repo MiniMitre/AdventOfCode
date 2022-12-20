@@ -1,14 +1,14 @@
 .container{
     display: grid;
     grid-template-columns: auto 1fr;
-    margin: 0 2rem;
     background-color: #333;
     color: #fff;
+    max-width: 1500px;
+    margin: auto;
 }
 
 .input{
     grid-column-start: 1;
-    text-align: center;
 }
 
 .input-text{
@@ -42,7 +42,7 @@ h2{
 }
 
 .iframe iframe{
-    width: min(calc(100vw - 4rem),1920px);
+    width: min(calc(100% - 4rem),1920px);
     height: calc(100vh/4 + 50px);
 }
 
@@ -70,7 +70,6 @@ table {
 }
 
 .explanation{
-    border-top: 2px solid #DDD;
     grid-column-start: 1;
     grid-column-end: 3;
 }
@@ -88,8 +87,31 @@ code{
     background-color: #222;
     padding: 2px 5px;
     outline: 1px solid #555;
+
+    max-width: 100%;
+    display: flex;
+    overflow-y: auto;
 }
 
 .typescript p{
     margin: 0;
+}
+
+.red{
+    color: #f22;
+}
+
+.example-results{
+    border-top: 2px solid #DDD;
+}
+
+.my-results{
+    margin: auto;
+    border-top: 2px solid #DDD;
+}
+
+.iframe a{
+    color: lightblue;
+    text-decoration: none;
+    display: inline;
 }

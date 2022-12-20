@@ -1,25 +1,74 @@
 import React from "react";
 import './solution.css';
+import { exampleInput } from './example-input';
+import { myInput } from "./input";
 
-import * as fs from 'fs';
+function solveDay01Part01(input: string){
+
+  let maxCalories : number = 0
+  let currentCalories : number = 0
+
+  //Create an array with each line of the input
+  let inputArray: string[] = input.split('\n')
+
+  for (let i = 0; i < inputArray.length; i++) {
+
+    //We have reached a new line
+    if (inputArray[i] == ""){
+      maxCalories = Math.max(currentCalories, maxCalories)
+      currentCalories = 0
+    }
+    else{
+      //We are still on the same elf
+      currentCalories += parseInt(inputArray[i])
+    }
+
+  }
+
+  //Convert result to string with comma seperated thousands
+  const result = maxCalories.toLocaleString('en', {useGrouping:true})
+  return result
+
+}
+
+var part1Code = 
+`function solveDay01Part01(input: string){
+
+  let maxCalories : number = 0
+  let currentCalories : number = 0
+
+  //Create an array with each line of the input
+  let inputArray: string[] = input.split('\\n')
+
+  for (let i = 0; i < inputArray.length; i++) {
+
+    //We have reached a new line
+    if (inputArray[i] == ""){
+      maxCalories = Math.max(currentCalories, maxCalories)
+      currentCalories = 0
+    }
+    else{
+      //We are still on the same elf
+      currentCalories += parseInt(inputArray[i])
+    }
+
+  }
+
+  //Convert result to string with comma seperated thousands
+  const result = maxCalories.toLocaleString('en', {useGrouping:true})
+  return result
+
+}`
 
 const Day01: React.FC = () => {
 
-  const maxCalories : number = 0
-  const currentCalories : number = 0
-
-  const exampleInput : string = "ahhhhhhhh";
-
-  const initializeVariables = 
-`const maxCalories = 0
-const currentCalories = 0`
-  
   return(
     <div className="container">
 
       <div className="iframe">
         <h1>Question:</h1>
         <iframe title="Day1" src="https://adventofcode.com/2022/day/1"></iframe>
+        <p>From <a href="https://adventofcode.com">Advent Of Code</a></p>
       </div>
       
       <div className="example">
@@ -30,90 +79,87 @@ const currentCalories = 0`
 
         <h3>Input:</h3>
 
-        <pre className="input-text">
-          <p>1000</p>
-          <p>2000</p>
-          <p>3000</p>
-          <br></br>
-          <p>4000</p>
-          <br></br>
-          <p>5000</p>
-          <p>6000</p>
-          <br></br>
-          <p>7000</p>
-          <p>8000</p>
-          <p>9000</p>
-          <br></br>
-          <p>10000</p>
+        <pre>
+          <div className="TypeScript">
+            {exampleInput}
+          </div>
         </pre>
 
       </div>
 
       <div className="elves">
-      <table>
-        <tbody>
-          <tr>
-            <th></th>
-            <th>Elf 1</th>
-            <th>Elf 2</th>
-            <th>Elf 3</th>
-            <th>Elf 4</th>
-            <th>Elf 5</th>
-          </tr>
-          <tr>
-            <td></td>
-            <td>1,000</td>
-            <td>4,000</td>
-            <td>5,000</td>
-            <td>7,000</td>
-            <td>1,0000</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>2,000</td>
-            <td></td>
-            <td>6,000</td>
-            <td>8,000</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>3,000</td>
-            <td></td>
-            <td></td>
-            <td>9,000</td>
-          </tr>
-          <tr className="sum">
-            <td>Sum</td>
-            <td>6,000</td>
-            <td>4,000</td>
-            <td>11,000</td>
-            <td>24,000</td>
-            <td>10,000</td>
-          </tr>
-        </tbody>
-      </table>
+        <table>
+          <tbody>
+            <tr>
+              <th></th>
+              <th>Elf 1</th>
+              <th>Elf 2</th>
+              <th>Elf 3</th>
+              <th>Elf 4</th>
+              <th>Elf 5</th>
+            </tr>
+            <tr>
+              <td></td>
+              <td>1,000</td>
+              <td>4,000</td>
+              <td>5,000</td>
+              <td>7,000</td>
+              <td>1,0000</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>2,000</td>
+              <td></td>
+              <td>6,000</td>
+              <td>8,000</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>3,000</td>
+              <td></td>
+              <td></td>
+              <td>9,000</td>  
+            </tr>
+            <tr className="sum">
+              <td>Sum</td>
+              <td>6,000</td>
+              <td>4,000</td>
+              <td>11,000</td>
+              <td className="red">24,000</td>
+              <td>10,000</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-    <div className="explanation">
-      <p>The following code is written in TypeScript:</p>
-      <p>This problem can be solved by creating a variable to store the max calories, and initialising it to 0.</p>
-      <code>const maxCalories = 0</code>
-      <p>Also initialise a variable to count the current calories.</p>
-      <code>const currentCalories = 0</code>
-      <p>Then loop over each line in the input, adding it to the current calories, unless it is a new line <code>\n</code></p>
-      <pre>
-        <div className="TypeScript">
-            {initializeVariables}
-        </div>
-      </pre>
-      <pre>
-        <div className="TypeScript">
-            {exampleInput}
-        </div>
-      </pre>
-      <p>If it is a new line <code>\n</code>  compare the max calories to the current calories. Replacing the max calories with whichever is larger.</p>
-      <p>The final answer is the value of max calories.</p>
-    </div>
+      <div className="example-results">
+        <p>
+          Example
+        </p>
+        <pre>
+          <div className="TypeScript">
+            {solveDay01Part01(exampleInput)}
+          </div>
+        </pre>
+      </div>
+
+      <div className="my-results">
+        <p>Using my puzzle input</p>
+        <pre>
+          <div className="TypeScript">
+            {solveDay01Part01(myInput)}
+          </div>
+        </pre>
+      </div>
+
+      <div className="explanation">
+        <p>The following code is written in TypeScript</p>
+        <pre>
+          <div className="TypeScript">
+            {part1Code}
+          </div>
+        </pre>
+      </div>
 
     </div>
   )
