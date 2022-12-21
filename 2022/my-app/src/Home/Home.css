@@ -1,18 +1,19 @@
-.App-body {
-  text-align: center;
-    padding: 2rem;
-    background-color: #282c34;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
-  
-.App-body a{
-    color: lightblue;
-    text-decoration: none;
-    display: inline;
+.home-logo{
+  grid-column-start: 1;
 }
 
-.App-body img {
-  background-color: #00012e;
-  width: min(100%,1080px);
+.home-logo img{
+  width: 100%;
+}
+
+.home-text{
+  grid-column-start: 1;
+  text-align: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.home-text a{
+  color: lightblue;
+  text-decoration: none;
+  display: inline;
 }

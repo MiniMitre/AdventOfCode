@@ -1,3 +1,145 @@
-App{
-    max-width: 1500px;
+.container{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    background-color: #333;
+    color: #fff;
+    max-width: 1550px;
+    margin: auto;
+    padding: 100px 2rem 300px 2rem;
+
+}
+
+.input{
+    grid-column-start: 1;
+}
+
+.input-text{
+    padding: 4px;
+    border: 1px solid #555;
+    background-color: #222;
+}
+
+.input p{
+    margin: 0;
+}
+
+h2{
+    text-align: center;
+}
+
+.iframe{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    text-align: center;
+}
+
+.part{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    border-bottom: 2px solid #DDD;
+    background-color: #555;
+    padding: 0 1rem;
+}
+
+.iframe iframe{
+    width: 100%;
+    height: calc(100vh/4 + 50px);
+}
+
+.part-1-solution{
+    grid-column-start: 2;
+    grid-column-end: 4;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+}
+
+.part-2-solution{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+}
+
+th, td {
+    padding: 15px;
+}
+
+table {
+    border-spacing: 0;
+}
+
+.explanation{
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+code{
+    background-color: #222;
+    font-size: smaller;
+    padding: 2px 5px;
+    outline: 1px solid #555;
+}
+
+.TypeScript{
+    font-size:x-large;
+    width: fit-content;
+    background-color: #222;
+    padding: 2px 5px;
+    outline: 1px solid #555;
+
+    max-width: 100%;
+    display: flex;
+    overflow-y: auto;
+}
+
+.typescript p{
+    margin: 0;
+}
+
+.green{
+    color: #2F2;
+}
+
+.example-results{
+    border-top: 2px solid #DDD;
+}
+
+.my-results{
+    text-align: center;
+    border-top: 2px solid #DDD;
+}
+
+.iframe a{
+    color: lightblue;
+    text-decoration: none;
+    display: inline;
+}
+
+.centred{
+    margin: auto;
+}
+
+button{
+    margin: 1rem;
+    border: none;
+    border-radius: 10px;
+    background-color: #11E;
+    padding: 1rem;
+
+    font-size: x-large;
+    font-weight: bold;
+    color: white;
+
+    cursor: pointer;
+}
+
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    border-top: 2px solid #DDD;
 }

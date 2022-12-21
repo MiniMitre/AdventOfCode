@@ -5,16 +5,17 @@
     flex-direction: row;
     background-color: #444;
     color: #fff;
+    position: fixed;
+    width: 100%
 }
 
 .home{
     text-align: center;
     text-decoration: none;
-    font-size: calc(10px + 1vmin);
 
     padding: 1em;
     color: white;
-    min-width: 60px;
+    width: 100px;
     max-height: 35px;
 
     padding: 5px 15px;
@@ -28,6 +29,7 @@
 
 .day{
     text-align: center;
+    width: 80px;
 }
 
 .home:not(.active):hover{
@@ -48,14 +50,12 @@
     text-decoration: none;
     display: block;
 
-    font-size: calc(10px + 1vmin);
-    min-width: calc(60px + 1vmin);
+    padding: 0.5rem;
+    margin: 0.5rem;
 
-    padding: 0.5em;
     color: white;
-    
     border-radius: 10px;
-    margin: 0.5em;
+    
 }
 
 .navigation a:not(.active):hover {
