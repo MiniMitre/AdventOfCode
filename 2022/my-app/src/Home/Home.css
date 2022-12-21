@@ -1,5 +1,6 @@
 .home-logo{
   grid-column-start: 1;
+  grid-column-end: -1;
 }
 
 .home-logo img{
@@ -8,6 +9,7 @@
 
 .home-text{
   grid-column-start: 1;
+  grid-column-end: -1;
   text-align: center;
   font-size: calc(10px + 2vmin);
 }

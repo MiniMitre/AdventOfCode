@@ -1,12 +1,11 @@
 .container{
     display: grid;
-    grid-template-columns: auto 1fr;
     background-color: #333;
     color: #fff;
     max-width: 1550px;
     margin: auto;
     padding: 100px 2rem 300px 2rem;
-
+    grid-template-columns: 1fr 2fr 2fr;
 }
 
 .input{
@@ -29,13 +28,13 @@ h2{
 
 .iframe{
     grid-column-start: 1;
-    grid-column-end: 4;
+    grid-column-end: -1;
     text-align: center;
 }
 
 .part{
     grid-column-start: 1;
-    grid-column-end: 4;
+    grid-column-end: -1;
     border-bottom: 2px solid #DDD;
     background-color: #555;
     padding: 0 1rem;
@@ -44,22 +43,6 @@ h2{
 .iframe iframe{
     width: 100%;
     height: calc(100vh/4 + 50px);
-}
-
-.part-1-solution{
-    grid-column-start: 2;
-    grid-column-end: 4;
-    text-align: center;
-    align-items: center;
-    margin: auto;
-}
-
-.part-2-solution{
-    grid-column-start: 1;
-    grid-column-end: 4;
-    text-align: center;
-    align-items: center;
-    margin: auto;
 }
 
 th, td {
@@ -72,25 +55,18 @@ table {
 
 .explanation{
     grid-column-start: 1;
-    grid-column-end: 4;
-}
-
-code{
-    background-color: #222;
-    font-size: smaller;
-    padding: 2px 5px;
-    outline: 1px solid #555;
+    grid-column-end: -1;
 }
 
 .TypeScript{
-    font-size:x-large;
+    font-size:20px;
     width: fit-content;
     background-color: #222;
     padding: 2px 5px;
     outline: 1px solid #555;
 
-    max-width: 100%;
     display: flex;
+    max-width: 100%;
     overflow-y: auto;
 }
 
@@ -102,23 +78,10 @@ code{
     color: #2F2;
 }
 
-.example-results{
-    border-top: 2px solid #DDD;
-}
-
-.my-results{
-    text-align: center;
-    border-top: 2px solid #DDD;
-}
-
 .iframe a{
     color: lightblue;
     text-decoration: none;
     display: inline;
-}
-
-.centred{
-    margin: auto;
 }
 
 button{
@@ -138,8 +101,6 @@ button{
 .button{
     display: flex;
     align-items: center;
-    justify-content: center;
     grid-column-start: 2;
     grid-column-end: 3;
-    border-top: 2px solid #DDD;
 }
