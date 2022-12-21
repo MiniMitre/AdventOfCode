@@ -8,11 +8,11 @@ import hljs from 'highlight.js'
 
 function solvePart1(input: string){
 
-  let maxCalories : number = 0
-  let currentCalories : number = 0
-
   //Create an array with each line of the input
   let inputArray: string[] = input.split('\n')
+
+  let maxCalories : number = 0
+  let currentCalories : number = 0
 
   for (let i = 0; i < inputArray.length; i++) {
 
@@ -200,7 +200,7 @@ const Day01: React.FC = () => {
 
       </div>
 
-      <div className="day-1-part-1-calculation">
+      <div className="part-1-calculation day1">
         <h3>Calculation:</h3>
         <p><strong>Elf 1:</strong> 6,000</p>
         <p><strong>Elf 2:</strong> 4,000</p>
@@ -209,7 +209,7 @@ const Day01: React.FC = () => {
         <p><strong>Elf 5:</strong> 10,000</p>
       </div>
 
-      <div className="day-1-part-1-solution">
+      <div className="part-1-solution">
         <h3>Solution:</h3>
         <p>Example:</p>
         <pre>
@@ -255,7 +255,7 @@ const Day01: React.FC = () => {
 
       </div>
 
-      <div className="day-1-part-2-calculation">
+      <div className="part-2-calculation day1">
         <h3>Calculation:</h3>
         <p><strong>Elf 1:</strong> 6,000</p>
         <p><strong>Elf 2:</strong> 4,000</p>
@@ -264,7 +264,7 @@ const Day01: React.FC = () => {
         <p><strong>Elf 5:</strong> <span className="green" >10,000</span></p>
       </div>
 
-      <div className="day-1-part-2-solution">
+      <div className="part-2-solution">
         <h3>Solution:</h3>
         <p>Example:</p>
         <pre>
