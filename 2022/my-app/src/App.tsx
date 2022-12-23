@@ -8,6 +8,7 @@ import Topbar from './Topbar/Topbar';
 import Day from './Days/Template/solution';
 import Day01 from './Days/1/solution';
 import Day02 from './Days/2/solution';
+import Day03 from './Days/3/solution';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Route path='/' element={<Home />}></Route>
         <Route path='/day-1' element={<Day01 />}></Route>
         <Route path='/day-2' element={<Day02 />}></Route>
-        <Route path='/day-3' element={<Day />}></Route>
+        <Route path='/day-3' element={<Day03 />}></Route>
         <Route path='/day-4' element={<Day />}></Route>
         <Route path='/day-5' element={<Day />}></Route>
         <Route path='/day-6' element={<Day />}></Route>
