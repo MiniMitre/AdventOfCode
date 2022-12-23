@@ -8,12 +8,12 @@ const Topbar: React.FC = () => {
     <div className="topbar">
       <NavLink to= '/' className='home'>Home</NavLink>
       <ul className='navigation'>
-        <li><NavLink className='day' to='day-1'>Day 1</NavLink></li>
-        <li><NavLink className='day' to= 'day-2'>Day 2</NavLink></li>
-        <li><NavLink className='day' to= 'day-3'>Day 3</NavLink></li>
+        <li><NavLink className='day solved' to='day-1'>Day 1</NavLink></li>
+        <li><NavLink className='day solved' to= 'day-2'>Day 2</NavLink></li>
+        <li><NavLink className='day solved' to= 'day-3'>Day 3</NavLink></li>
         <li><NavLink className='day' to= 'day-4'>Day 4</NavLink></li>
         <li><NavLink className='day' to= 'day-5'>Day 5</NavLink></li>
-        <li><NavLink className='day' to= 'day-6'>Day 6</NavLink></li>
+        <li><NavLink className='day solved' to= 'day-6'>Day 6</NavLink></li>
         <li><NavLink className='day' to= 'day-7'>Day 7</NavLink></li>
         <li><NavLink className='day' to= 'day-8'>Day 8</NavLink></li>
         <li><NavLink className='day' to= 'day-9'>Day 9</NavLink></li>
