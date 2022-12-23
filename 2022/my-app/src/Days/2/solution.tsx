@@ -132,7 +132,7 @@ var part1Code =
 }`
 
 //Add highlighting to code
-part1Code = hljs.highlightAuto(part1Code).value
+part1Code = hljs.highlight("typescript",part1Code).value
 //Will need to use dangerouslySetInnerHTML but that is okay because I am not allowing user input strings
 
 function solvePart2(input: string){
@@ -251,7 +251,7 @@ return result
 }`
 
 //Add highlighting to code
-part2Code = hljs.highlightAuto(part2Code).value
+part2Code = hljs.highlight("typescript",part2Code).value
 //Will need to use dangerouslySetInnerHTML but that is okay because I am not allowing user input strings
 
 const toggleExpand = (part : string) => {
