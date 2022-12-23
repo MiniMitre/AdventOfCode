@@ -14,15 +14,14 @@ function solvePart1(input: string){
   return inputArray
 
 }
-
 var part1Code = 
-`function solvePart1(input: string){
+`function solvePart2(input: string){
 
   //Create an array with each line of the input
   let inputArray: string[] = input.split('\\n')
-  
-  const result : string = "0"
-  return result
+
+  return inputArray
+
 }`
 
 //Add highlighting to code
@@ -32,7 +31,7 @@ part1Code = hljs.highlight("typescript",part1Code).value
 function solvePart2(input: string){
 
   //Create an array with each line of the input
-  let inputArray: string[] = input.split('\\n')
+  let inputArray: string[] = input.split('\n')
 
   return inputArray
 
@@ -43,9 +42,8 @@ var part2Code =
 
   //Create an array with each line of the input
   let inputArray: string[] = input.split('\\n')
-  
-  const result : string = "0"
-  return result
+
+  return inputArray
 
 }`
 
@@ -82,7 +80,7 @@ const toggleExpand = (part : string) => {
   }
 }
 
-const Day01: React.FC = () => {
+const Day: React.FC = () => {
 
   return(
     
@@ -199,4 +197,4 @@ const Day01: React.FC = () => {
   )
 }
 
-export default Day01
+export default Day
