@@ -10,6 +10,7 @@ import Day01 from './Days/1/solution';
 import Day02 from './Days/2/solution';
 import Day03 from './Days/3/solution';
 import Day06 from './Days/6/solution';
+import Day17 from './Days/17/solution';
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
         <Route path='/day-14' element={<Unsolved />}></Route>
         <Route path='/day-15' element={<Unsolved />}></Route>
         <Route path='/day-16' element={<Unsolved />}></Route>
-        <Route path='/day-17' element={<Unsolved />}></Route>
+        <Route path='/day-17' element={<Day17 />}></Route>
         <Route path='/day-18' element={<Unsolved />}></Route>
         <Route path='/day-19' element={<Unsolved />}></Route>
         <Route path='/day-20' element={<Unsolved />}></Route>
