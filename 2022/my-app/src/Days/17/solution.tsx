@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import './solution.css';
 import '../../../node_modules/highlight.js/styles/atom-one-dark-reasonable.css'
 import { exampleInput } from './example-input';
@@ -6,229 +6,102 @@ import { myInput } from "./input";
 
 import hljs from 'highlight.js'
 
-class Rock {
-  shape: string[];
-  position: { x: number, y: number };
-  direction: "left" | "right";
-  falling: boolean;
+const chamberWidth = 7
+const leftPadding = 2; // number of tiles to spawn away from the left hand side
+const bottomPadding = 3;
 
-  constructor(shape: string[], position: { x: number, y: number }, direction: "left" | "right", falling: boolean) {
-    this.shape = shape;
-    this.position = position;
-    this.direction = direction;
-    this.falling = falling;
-  }
+const rockShapes: String[][] = [ 
+  ["1111"],
 
-  move(game: Game) {
-    // If the rock is not falling, don't do anything
-    if (!this.falling) {
-      console.log('Rock is not falling, returning');
-      return;
-    }
-  
-    // Move the rock one unit in the direction indicated by the direction property
-    if (this.direction === "left") {
-      this.position.x--;
-    } else {
-      this.position.x++;
-    }
-  
-    console.log(`Rock moved to position: ${this.position.x}, ${this.position.y}`);
-  
-    // Check if the rock has moved into the walls or a stopped rock
-    if (this.position.x < 0 || this.position.x + this.shape[0].length > game.width) {
-      // If the rock has moved into the walls, move it back to the previous position
-      if (this.direction === "left") {
-        this.position.x++;
-      } else {
-        this.position.x--;
-      }
-  
-      console.log(`Rock moved into wall, moved back to position: ${this.position.x}, ${this.position.y}`);
-    } else {
-      // Otherwise, check if the rock has moved into a stopped rock
-      for (const otherRock of game.rocks) {
-        if (otherRock !== this && this.collidesWith(otherRock)) {
-          // If the rock has moved into a stopped rock, move it back to the previous position
-          if (this.direction === "left") {
-            this.position.x++;
-          } else {
-            this.position.x--;
-          }
-          console.log(`Rock moved into stopped rock, moved back to position: ${this.position.x}, ${this.position.y}`);
-          break;
-        }
-      }
-    }
-  
-    // Move the rock one unit down
-    this.position.y++;
-  
-    console.log(`Rock moved down to position: ${this.position.x}, ${this.position.y}`);
-  
-    // Check if the rock has moved into the floor or a stopped rock
-    if (this.position.y + this.shape.length > game.rocks.length) {
-      // If the rock has moved into the floor, stop it from falling
-      this.falling = false;
-      console.log('Rock has moved into floor, stopped falling');
-    } else {
-      // Otherwise, check if the rock has moved into a stopped rock
-      for (const otherRock of game.rocks) {
-        if (otherRock !== this && this.collidesWith(otherRock)) {
-          // If the rock has moved into a stopped rock, stop it from falling
-          this.falling = false;
-          console.log('Rock has moved into stopped rock, stopped falling');
-          break;
-        }
-      }
-    }
-  }
-  
-  setDirection(jetDirection: "left" | "right") {
-    this.direction = jetDirection;
-    console.log(`Rock direction set to: ${this.direction}`);
-  }
-  
+  ["010",
+   "111",
+   "010" ],
 
-  // A helper method to check if this rock collides with another rock
-  collidesWith(otherRock: Rock): boolean {
-    // Check if the two rocks overlap horizontally
-    if (this.position.x + this.shape[0].length > otherRock.position.x &&
-        otherRock.position.x + otherRock.shape[0].length > this.position.x) {
-      console.log('Rocks overlap horizontally');
-      // If the two rocks overlap horizontally, check if they also overlap vertically
-      if (this.position.y < otherRock.position.y + otherRock.shape.length &&
-          otherRock.position.y < this.position.y + this.shape.length) {
-        console.log('Rocks also overlap vertically');
-        // If the two rocks overlap both horizontally and vertically, they are colliding
-        return true;
-      }
-    }
-    // If the two rocks do not overlap horizontally or vertically, they are not colliding
-    console.log('Rocks do not overlap');
-    return false;
-  }
-  
-}
+  ["001",
+   "001",
+   "111",],
 
-class Game {
-  width: number;
-  rockShapes: string[][];
-  jetPattern: string;
-  rocks: Rock[];
+  ["1",
+   "1",
+   "1",
+   "1",],
 
-  constructor(width: number, rockShapes: string[][], jetPattern: string) {
-    this.width = width;
-    this.rockShapes = rockShapes;
-    this.jetPattern = jetPattern;
-    this.rocks = [];
-  }
-
-  addRock() {
-    // Get the next shape in the rockShapes array
-    const shape = this.rockShapes[this.rocks.length % this.rockShapes.length];
-    // Calculate the position of the new rock
-    const position = {
-      x: 2,
-      y: 3 - this.rocks.length
-    };
-    // Get the direction that the rock should be pushed by the jets of hot gas
-    const direction = this.jetPattern[this.rocks.length % this.jetPattern.length] === ">" ? "right" : "left";
-    console.log(`Adding new rock with shape: ${shape}, position: ${position}, direction: ${direction}`);
-    // Create a new Rock object and add it to the rocks array
-    this.rocks.push(new Rock(shape, position, direction, true));
-  }
-  
-  moveRocks() {
-    console.log(`moveRocks called: on ${this.rocks}`)
-    // Iterate through the rocks array and call the move() method of each rock
-    for (const rock of this.rocks) {
-      rock.move(this);
-    }
-    // Filter the rocks array to only include rocks that are still falling
-    this.rocks = this.rocks.filter(rock => rock.falling);
-  }
-  
-  simulate() {
-    console.log(`simulate called: on ${this.rocks}`)
-    // Add a new rock if there are no falling rocks
-    if (this.rocks.length === 0 || !this.rocks[this.rocks.length - 1].falling) {
-      this.addRock();
-    }
-  
-    // Move all the rocks
-    this.moveRocks();
-  }
-  
-
-    // A helper method to draw the current state of the game
-  draw(): string {
-    // Initialize an array to store the lines of the drawing
-    const lines: string[] = [];
-    console.log(`Drawing chamber with width: ${this.width}, height: ${this.rocks.length + 2}`);
-    // Iterate through each row of the chamber
-    for (let y = 0; y < this.rocks.length + 2; y++) {
-      // Initialize a string to store the characters for this row
-      let line = "|";
-      // Iterate through each column of the chamber
-      for (let x = 0; x < this.width; x++) {
-        // Check if there is a rock at this position
-        let rockFound = false;
-        for (const rock of this.rocks) {
-          if (rock.shape[y - rock.position.y][x - rock.position.x] === "#") {
-            // If there is a rock at this position, add a "#" character to the line
-            line += "#";
-            rockFound = true;
-            break;
-          }
-        }
-        if (!rockFound) {
-          // If there is no rock at this position, add a "." character to the line
-          line += ".";
-        }
-      }
-      line += "|";
-      // Add the line to the lines array
-      lines.push(line);
-    }
-    // Add the bottom border of the chamber to the lines array
-    lines.push("+" + "-".repeat(this.width) + "+");
-    console.log(`Finished drawing chamber: ${lines.join("\n")}`);
-    // Return the lines array joined into a single string
-    return lines.join("\n");
-  }
-
-}
-
-const rockShapes = [ 
-  ["####",
-   ".#..",
-   "###.",
-   ".#.." ],
-
-  ["..#",
-   "..#",
-  "###",],
-
-  ["#",
-   "#",
-   "#",
-   "#",],
-
-  ["##",
-   "##",]
+  ["11",
+   "11",]
 ];
 
+const rockSpawnShapes = rockShapes.map(shape => {
+  // add leftPadding zeroes to the left of each line
+  const leftPaddingString = "0".repeat(leftPadding);
+  const paddedShape = [...shape.map(line => `${leftPaddingString}${line}`)].map(line => {
+    // pad the line with zeroes until it is chamberWidth characters wide
+    while (line.length < chamberWidth) {
+      line += "0";
+    }
+    return line;
+  });
+
+  // add three lines of zeroes to the bottom of the shape
+  for (let i = 0; i < bottomPadding; i++) {
+    paddedShape.push("0".repeat(chamberWidth));
+  }
+
+  return paddedShape;
+});
+
+function convertRockShapes(rockShapes: string[]): string[] {
+  const result: string[] = [];
+  for (const shape of rockShapes) {
+    let shapeString = '';
+    for (const char of shape) {
+
+      if (char === '1') {
+        shapeString += '@';
+      } else if (char === '0') {
+        shapeString += '.';
+      } else {
+        shapeString += char;
+      }
+    }
+    result.push(shapeString + '\n');
+  }
+  return result;
+}
+
+
+const printRockShapes = (rockShape: string[]) => {
+  
+  let gameplayField =  convertRockShapes(rockShape);
+
+  //Add | before each line
+  gameplayField = gameplayField.map(line => `|${line}`);
+
+  //Add | after each line (but before \n)
+  gameplayField = gameplayField.map(line => line.replace('\n', '|\n'));
+
+  // Add the bottom border of the chamber to the lines array
+  gameplayField.push( "+" + "-".repeat(chamberWidth) + "+");
+
+  return gameplayField
+
+}
+
+const blowAir = (direction: string) => {
+  if (direction ==="<") {
+    // Left
+  } else{
+    // Right
+  }
+
+  return 
+}
 
 function solvePart1(input: string){
 
-  const game = new Game(7, rockShapes, input);
-
-  game.simulate();
-  
-  return game.draw();
+  return input;
 
 }
+
 var part1Code = 
 `function solvePart2(input: string){
 
@@ -295,20 +168,75 @@ const toggleExpand = (part : string) => {
   }
 }
 
+
+const waitTime = 1500;
+
+function wait(){
+  return new Promise(resolve => setTimeout(resolve, waitTime));
+}
+
+//Do not run the calculation by default
+let stop = true;
+
+function toggleSimulation(){
+  const buttonId = "simulation";
+  const button = document.getElementById(buttonId)
+
+  if (button === null){
+    console.error("ButtonId: " + buttonId + " is null")
+    return
+  }
+  if(button.innerHTML.includes("Start")){
+    button.innerHTML = "Stop Simulation";
+    button.classList.add("red");
+    button.classList.remove("green")
+  }else{
+    button.innerHTML = "Start Simulation";
+    button.classList.remove("red");
+    button.classList.add("green")
+  }
+  stop = !stop;
+}
+
+const WAIT_TIME = 1000;
+
 const Day: React.FC = () => {
+
+  let rockShapeNum = 0;
+  const [gameField, setGameField] = useState<string[]>([]);
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      if(!stop){
+
+        console.log(`rockShapeNum = ${rockShapeNum}`)
+
+        setGameField((prevGameField) => {
+          const newGameField = [...prevGameField,
+            ...convertRockShapes(rockSpawnShapes[rockShapeNum])];
+          newGameField.push();
+          //Next shape spawns
+          rockShapeNum = (rockShapeNum + 1) % 5
+          return newGameField;
+        });
+
+      }
+    }, WAIT_TIME);
+    return () => clearInterval(interval);
+  }, []);
 
   return(
     
     <div className="container">
       <div className="iframe">
         <h1>Question:</h1>
-        <iframe title="Day" src="https://adventofcode.com/2022/"></iframe>
+        <iframe title="Day17" src="https://adventofcode.com/2022/day/17"></iframe>
         <p>From <a href="https://adventofcode.com">Advent Of Code</a></p>
       </div>
       
       <div className="part">
         <h2>Part 1:</h2>
-        <p>...</p>
+        <p>How many units tall will the tower of rocks be after 2022 rocks have stopped falling?</p>
       </div>
 
       <div className="input">
@@ -325,7 +253,18 @@ const Day: React.FC = () => {
 
       <div className="part-1-calculation">
         <h3>Calculation:</h3>
-        <p>...</p>
+        <div className="buttons">
+          <button
+            onClick={toggleSimulation}
+            className="green no-background"
+            id = "simulation"
+          >Start Simulation</button>
+        </div>
+        <pre>
+          <code className="TypeScript center">
+            {gameField}
+          </code>
+        </pre>
       </div>
 
       <div className="part-1-solution">
@@ -333,7 +272,7 @@ const Day: React.FC = () => {
         <p>Example:</p>
         <pre>
           <code className="TypeScript">
-            {solvePart1(exampleInput)}
+            .
           </code>
         </pre>
         <p>Using my puzzle input:</p>
@@ -358,7 +297,7 @@ const Day: React.FC = () => {
         </pre>
       </div>
 
-      <div className="part">
+      {/* <div className="part">
         <h2>Part 2:</h2>
         <p>...</p>
       </div>
@@ -407,7 +346,7 @@ const Day: React.FC = () => {
           <div dangerouslySetInnerHTML={{ __html: part2Code }} />
           </code>
         </pre>
-      </div>
+      </div> */}
 
     </div>
   )

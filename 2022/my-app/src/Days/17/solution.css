@@ -1,0 +1,12 @@
+.no-background{
+  background-color: inherit;
+  outline: 4px solid grey;
+}
+.center{
+  margin: auto;
+}
+
+.buttons{
+  display: flex;
+  justify-content: center;
+}
