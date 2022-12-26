@@ -48,7 +48,7 @@ var part2Code =
 }`
 
 //Add highlighting to code
-part2Code = hljs.highlight(part1Code,{language: 'TypeScript'}).value
+part2Code = hljs.highlight(part2Code,{language: 'TypeScript'}).value
 //Will need to use dangerouslySetInnerHTML but that is okay because I am not allowing user input strings
 
 const toggleExpand = (part : string) => {
