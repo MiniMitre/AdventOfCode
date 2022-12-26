@@ -5,6 +5,7 @@ import { exampleInput } from './example-input';
 import { myInput } from "./input";
 
 import hljs from 'highlight.js'
+import { checkPrimeSync } from "crypto";
 
 const chamberWidth = 7
 const leftPadding = 2; // number of tiles to spawn away from the left hand side
@@ -69,7 +70,7 @@ function convertRockShapes(rockShapes: string[]): string[] {
 }
 
 
-const printRockShapes = (rockShape: string[]) => {
+function printRockShapes (rockShape: string[]) {
   
   let gameplayField =  convertRockShapes(rockShape);
 
@@ -84,16 +85,6 @@ const printRockShapes = (rockShape: string[]) => {
 
   return gameplayField
 
-}
-
-const blowAir = (direction: string) => {
-  if (direction ==="<") {
-    // Left
-  } else{
-    // Right
-  }
-
-  return 
 }
 
 function solvePart1(input: string){
@@ -139,7 +130,7 @@ var part2Code =
 part2Code = hljs.highlight(part1Code,{language: 'TypeScript'}).value
 //Will need to use dangerouslySetInnerHTML but that is okay because I am not allowing user input strings
 
-const toggleExpand = (part : string) => {
+function toggleExpand (part : string) {
 
   const buttonId = "button" + part
   const button = document.getElementById(buttonId)
@@ -168,16 +159,6 @@ const toggleExpand = (part : string) => {
   }
 }
 
-
-const waitTime = 1500;
-
-function wait(){
-  return new Promise(resolve => setTimeout(resolve, waitTime));
-}
-
-//Do not run the calculation by default
-let stop = true;
-
 function toggleSimulation(){
   const buttonId = "simulation";
   const button = document.getElementById(buttonId)
@@ -198,32 +179,60 @@ function toggleSimulation(){
   stop = !stop;
 }
 
-const WAIT_TIME = 1000;
+//Do not run the calculation by default
+let stop = true;
 
 const Day: React.FC = () => {
 
+  const waitTime = 500;
   let rockShapeNum = 0;
   const [gameField, setGameField] = useState<string[]>([]);
 
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      if(!stop){
+  function useRockSimulation(){
+    React.useEffect(() => {
+      const interval = setInterval(() => {
 
-        console.log(`rockShapeNum = ${rockShapeNum}`)
+        if(!stop){
+          spawnRock()
 
-        setGameField((prevGameField) => {
-          const newGameField = [...prevGameField,
-            ...convertRockShapes(rockSpawnShapes[rockShapeNum])];
-          newGameField.push();
-          //Next shape spawns
-          rockShapeNum = (rockShapeNum + 1) % 5
-          return newGameField;
-        });
+          setTimeout(() => {
+            dropRock();
+          }, waitTime); 
+        }  
+       
+      }, 2*waitTime);
+      return () => clearInterval(interval);
+    }, []);
+  }
 
-      }
-    }, WAIT_TIME);
-    return () => clearInterval(interval);
-  }, []);
+  function spawnRock(){
+    setGameField((prevGameField) => {
+      const newGameField = [...(rockSpawnShapes[rockShapeNum]),
+        ...prevGameField];
+      newGameField.push();
+      //Next shape spawns
+      rockShapeNum = (rockShapeNum + 1) % 5
+      return newGameField;
+    });
+  }
+
+  function dropRock(){
+
+    setGameField((prevGameField) => {
+      const lineIndex = prevGameField.slice().reverse().findIndex(line => line.includes('1'));
+      const lineTestStr: string[] = [`${lineIndex}`]
+      const newGameField = [...lineTestStr,...prevGameField];
+      newGameField.push();
+      //Next shape spawns
+      rockShapeNum = (rockShapeNum + 1) % 5
+      return newGameField;
+    });
+    //Move all 1's down a line
+    //Repeat moving all 1's down a line until the end of the array
+    //If there was a collision with any non zero element of the array, cancel all movements and return 'collided'
+  }
+
+  useRockSimulation();
 
   return(
     
@@ -262,7 +271,7 @@ const Day: React.FC = () => {
         </div>
         <pre>
           <code className="TypeScript center">
-            {gameField}
+            {printRockShapes(gameField)}
           </code>
         </pre>
       </div>
