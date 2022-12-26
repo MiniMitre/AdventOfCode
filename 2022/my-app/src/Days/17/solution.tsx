@@ -5,7 +5,7 @@ import { exampleInput } from './example-input';
 import { myInput } from "./input";
 
 import hljs from 'highlight.js'
-import { checkPrimeSync } from "crypto";
+import { finished } from "stream";
 
 const chamberWidth = 7
 const leftPadding = 2; // number of tiles to spawn away from the left hand side
@@ -56,9 +56,7 @@ function convertRockShapes(rockShapes: string[]): string[] {
     let shapeString = '';
     for (const char of shape) {
 
-      if (char === '1') {
-        shapeString += '@';
-      } else if (char === '0') {
+      if (char === '0') {
         shapeString += '.';
       } else {
         shapeString += char;
@@ -184,7 +182,7 @@ let stop = true;
 
 const Day: React.FC = () => {
 
-  const waitTime = 500;
+  const waitTime = 1000;
   let rockShapeNum = 0;
   const [gameField, setGameField] = useState<string[]>([]);
 
@@ -193,11 +191,10 @@ const Day: React.FC = () => {
       const interval = setInterval(() => {
 
         if(!stop){
-          spawnRock()
-
+          spawnRock();
           setTimeout(() => {
             dropRock();
-          }, waitTime); 
+          }, waitTime);
         }  
        
       }, 2*waitTime);
@@ -207,25 +204,55 @@ const Day: React.FC = () => {
 
   function spawnRock(){
     setGameField((prevGameField) => {
-      const newGameField = [...(rockSpawnShapes[rockShapeNum]),
+      const newGameField = [...(rockSpawnShapes[rockShapeNum % 5]),
         ...prevGameField];
       newGameField.push();
-      //Next shape spawns
-      rockShapeNum = (rockShapeNum + 1) % 5
       return newGameField;
     });
   }
 
   function dropRock(){
-
+    let collided: boolean = false
+    let count : number = 0;
     setGameField((prevGameField) => {
-      const lineIndex = prevGameField.slice().reverse().findIndex(line => line.includes('1'));
-      const lineTestStr: string[] = [`${lineIndex}`]
-      const newGameField = [...lineTestStr,...prevGameField];
-      newGameField.push();
-      //Next shape spawns
-      rockShapeNum = (rockShapeNum + 1) % 5
-      return newGameField;
+      let updatedGameField: string[] = prevGameField;
+      //Find the bottom line of the current falling shape
+      let lineIndex = 
+      updatedGameField.length  - 
+      updatedGameField
+          .slice()
+          .reverse()
+          .findIndex(line => line.includes('1')) - 
+        1;
+        
+      while(!collided && !stop){
+
+        // We are at the bottom and cannot fall any further, stop the rock
+        if(lineIndex === updatedGameField.length - 1){
+          collided = true;
+        }
+
+        count = count + 1
+        // replaces the line below with the current line
+        updatedGameField[lineIndex + 1] = updatedGameField[lineIndex];
+        updatedGameField.splice(lineIndex,1)
+
+      }
+
+      // Create a new array with all 1's changed to 2's
+      const finishedGameField = updatedGameField.map(line => {
+        // Split the string into an array of characters
+        let chars = line.split('');
+        // Transform the characters
+        let transformedChars = chars.map(value => (value === '1' ? '2' : value));
+        // Join the transformed characters back into a single string
+        return transformedChars.join('');
+      });
+
+      //The rock has finished falling, so set up next shape to spawn
+      rockShapeNum = rockShapeNum + 1
+      finishedGameField.push();
+      return finishedGameField;
     });
     //Move all 1's down a line
     //Repeat moving all 1's down a line until the end of the array
@@ -270,7 +297,7 @@ const Day: React.FC = () => {
           >Start Simulation</button>
         </div>
         <pre>
-          <code className="TypeScript center">
+          <code className="TypeScript center max-height-300px">
             {printRockShapes(gameField)}
           </code>
         </pre>

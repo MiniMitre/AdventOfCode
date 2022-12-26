@@ -10,3 +10,11 @@
   display: flex;
   justify-content: center;
 }
+
+.max-height-300px{
+  max-height: 300px;
+}
+
+.max-height-300px::-webkit-scrollbar{
+  width: 10px;
+}
