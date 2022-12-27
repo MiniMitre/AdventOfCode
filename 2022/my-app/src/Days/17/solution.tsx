@@ -143,7 +143,6 @@ const rockStopNum = 2022;
 
 const Day: React.FC = () => {
 
-  const waitTime: number  = 0;
   let rockShapeNum: number = 0;
   const [gameField, setGameField] = useState<string[]>([]);
   let count: number = 0;
@@ -163,8 +162,7 @@ const Day: React.FC = () => {
 
   function spawnRock(){
     setGameField((prevGameField) => {
-      //We start at rock number 0
-      if(rockShapeNum === rockStopNum - 1){
+      if(rockShapeNum === rockStopNum){
         stop = true;
         return prevGameField;
       }
@@ -297,7 +295,6 @@ const Day: React.FC = () => {
         // We are at the bottom and cannot fall any further, stop the rock
         if(lineIndex === updatedGameField.length - 1){
           collided = true;
-          rockShapeNum = rockShapeNum + 1
           continue
         }
 
