@@ -94,14 +94,172 @@ function solvePart1(input: string){
 }
 
 var part1Code = 
-`function solvePart2(input: string){
+`const chamberWidth = 7
+const leftPadding = 2; // number of tiles to spawn away from the left hand side
+const bottomPadding = 3;
 
-  //Create an array with each line of the input
-  let inputArray: string[] = input.split('\\n')
+const rockShapes: String[][] = [ 
+  ["1111"],
 
-  return inputArray
+  ["010",
+   "111",
+   "010" ],
 
-}`
+  ["001",
+   "001",
+   "111",],
+
+  ["1",
+   "1",
+   "1",
+   "1",],
+
+  ["11",
+   "11",]
+];
+
+const rockSpawnShapes = rockShapes.map(shape => {
+  // add leftPadding zeroes to the left of each line
+  const leftPaddingString = "0".repeat(leftPadding);
+  const paddedShape = [...shape.map(line => \`\${leftPaddingString}\${line}\`)].map(line => {
+    // pad the line with zeroes until it is chamberWidth characters wide
+    while (line.length < chamberWidth) {
+      line += "0";
+    }
+    return line;
+  });
+
+  // add three lines of zeroes to the bottom of the shape
+  for (let i = 0; i < bottomPadding; i++) {
+    paddedShape.push("0".repeat(chamberWidth));
+  }
+
+  return paddedShape;
+});
+
+//Do not run the calculation by default
+let stop = true;
+const rockStopNum = 10;
+
+const Day: React.FC = () => {
+
+  const waitTime = 1500;
+  let rockShapeNum = 0;
+  const [gameField, setGameField] = useState<string[]>([]);
+
+  function useRockSimulation(){
+    React.useEffect(() => {
+      const interval = setInterval(() => {
+
+        if(!stop){
+          spawnRock();
+          setTimeout(() => {
+            dropRock();
+          }, waitTime);
+        }  
+       
+      }, 2*waitTime);
+
+      return () => clearInterval(interval);
+    }, []);
+  }
+
+  function spawnRock(){
+    setGameField((prevGameField) => {
+      if(rockShapeNum === rockStopNum){
+        stop = true;
+        return prevGameField;
+      }
+      const newGameField = [...(rockSpawnShapes[rockShapeNum % 5]),
+        ...prevGameField];
+      newGameField.push();
+      return newGameField;
+    });
+  }
+
+  function replaceChars(inputArray: string[], lineIndex: number, collided: boolean): [string[],boolean]{
+    let outputArray : string[] = inputArray.slice();
+    while (lineIndex >=0) {
+      // Split the string into an array of characters
+      const fallingRockChars: string[] = inputArray[lineIndex].split('');
+      let lineBelowChars: string[] = inputArray[lineIndex + 1].split('');
+      let outputLine: string[] = [];
+        
+        for (let i = 0; i < fallingRockChars.length; i++) {
+          const fallingChar = fallingRockChars[i];
+          const belowChar = lineBelowChars[i]
+          if (fallingChar !== '1'){
+            //No rock is falling, keep landed rocks.
+            outputLine[i] = belowChar ==='2' ? '2' : '0' 
+            continue
+          }
+          if (belowChar === '2'){
+            //We are falling into an already existing rock
+            collided = true;
+            return [inputArray,collided];
+          }
+          //Drop the rock at this character
+          outputLine[i] = '1'
+        }
+        const finalStr = outputLine.join('')
+        outputArray[lineIndex + 1] = finalStr;
+        lineIndex--
+      }
+    return [outputArray,collided];
+  }
+
+  function dropRock(){
+    let collided: boolean = false
+    setGameField((prevGameField) => {
+      let updatedGameField: string[] = prevGameField;
+      //Find the bottom line of the current falling shape
+      let lineIndex = 
+      updatedGameField.length  - 
+      updatedGameField
+          .slice()
+          .reverse()
+          .findIndex(line => line.includes('1')) - 
+        1;
+
+      if(lineIndex === prevGameField.length){
+        //We have finished
+        return prevGameField;
+      }
+        
+      while(!collided){
+        // We are at the bottom and cannot fall any further, stop the rock
+        if(lineIndex === updatedGameField.length - 1){
+          collided = true;
+          continue
+        }
+
+        const result = replaceChars(updatedGameField, lineIndex, collided);
+          collided = result[1];
+          updatedGameField = result[0];
+          if(!collided){
+            //delete top row
+          updatedGameField.splice(0,1);
+          }        
+      }
+
+      // Create a new array with all 1's changed to 2's
+      const finishedGameField = updatedGameField.map(line => {
+        // Split the string into an array of characters
+        let chars = line.split('');
+        // Transform the characters
+        let transformedChars = chars.map(value => (value === '1' ? '2' : value));
+        // Join the transformed characters back into a single string
+        return transformedChars.join('');
+      });
+
+      //The rock has finished falling, so set up next shape to spawn
+      rockShapeNum = rockShapeNum + 1
+      return finishedGameField;
+    });
+  }
+
+  useRockSimulation();
+`
 
 //Add highlighting to code
 part1Code = hljs.highlight(part1Code,{language: 'TypeScript'}).value
@@ -185,10 +343,9 @@ const rockStopNum = 10;
 
 const Day: React.FC = () => {
 
-  const waitTime = 750;
+  const waitTime = 1500;
   let rockShapeNum = 0;
   const [gameField, setGameField] = useState<string[]>([]);
-  let finalRockHeight = 0;
 
   function useRockSimulation(){
     React.useEffect(() => {
@@ -210,7 +367,6 @@ const Day: React.FC = () => {
   function spawnRock(){
     setGameField((prevGameField) => {
       if(rockShapeNum === rockStopNum){
-        finalRockHeight = prevGameField.length;
         stop = true;
         return prevGameField;
       }
@@ -339,7 +495,7 @@ const Day: React.FC = () => {
             id = "simulation"
           >Start Simulation</button>
         </div>
-        <p>Length = {gameField.length}</p>
+        <p>Current Height = {gameField.length}</p>
         <pre>
           <code className="TypeScript center max-height-300px">
             {printRockShapes(gameField)}
@@ -358,8 +514,7 @@ const Day: React.FC = () => {
         <p>Using my puzzle input:</p>
         <pre>
           <code className="TypeScript">
-            {//solvePart1(myInput)
-            }
+            .
           </code>
         </pre>
         <div className="button">
