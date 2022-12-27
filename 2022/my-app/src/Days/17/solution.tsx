@@ -182,7 +182,7 @@ let stop = true;
 const Day: React.FC = () => {
 
   const waitTime = 1000;
-  let rockShapeNum = 2;
+  let rockShapeNum = 0;
   const [gameField, setGameField] = useState<string[]>([]);
 
   function useRockSimulation(){
@@ -211,32 +211,35 @@ const Day: React.FC = () => {
   }
 
   function replaceChars(inputArray: string[], lineIndex: number, collided: boolean): string[] | boolean{
-    console.log(lineIndex);
     let outputArray : string[] = inputArray;
-    // Split the string into an array of characters
-    const fallingRockChars: string[] = inputArray[lineIndex].split('');
-    let lineBelowChars: string[] = inputArray[lineIndex + 1].split('');
-    let outputLine: string[] = [];
-      
-      for (let i = 0; i < fallingRockChars.length; i++) {
-        const fallingChar = fallingRockChars[i];
-        const belowChar = lineBelowChars[i]
-        if (fallingChar !== '1'){
-          //No rock is falling
-          outputLine[i] = belowChar
-          continue
+    while (lineIndex >=0) {
+      console.log(lineIndex)
+      // Split the string into an array of characters
+      const fallingRockChars: string[] = inputArray[lineIndex].split('');
+      let lineBelowChars: string[] = inputArray[lineIndex + 1].split('');
+      let outputLine: string[] = [];
+        
+        for (let i = 0; i < fallingRockChars.length; i++) {
+          const fallingChar = fallingRockChars[i];
+          const belowChar = lineBelowChars[i]
+          if (fallingChar !== '1'){
+            //No rock is falling, keep landed rocks.
+            outputLine[i] = belowChar ==='2' ? '2' : '0' 
+            continue
+          }
+          if (belowChar === '2'){
+            //We are falling into an already existing rock
+            collided = true;
+            return collided;
+          }
+          //Drop the rock at this character
+          outputLine[i] = '1'
         }
-        if (belowChar === '2'){
-          //We are falling into an already existing rock
-          collided = true;
-          return collided;
-        }
-        //Drop the rock at this character
-        outputLine[i] = '1'
+        const finalStr = outputLine.join('')
+        outputArray[lineIndex + 1] = finalStr;
+        lineIndex--
       }
-      const finalStr = outputLine.join('')
-      outputArray[lineIndex + 1] = finalStr;
-      return outputArray;
+    return outputArray;
   }
 
 
@@ -267,7 +270,8 @@ const Day: React.FC = () => {
         if (Array.isArray(result)) {
           //We fell 1 more layer
           updatedGameField = result;
-          updatedGameField.splice(lineIndex,1);
+          //Delete the top line (duplicate)
+          updatedGameField.splice(0,1);
         } else {
           //We collided with the floor, do not update the game field
           collided = result;
