@@ -5,7 +5,6 @@ import { exampleInput } from './example-input';
 import { myInput } from "./input";
 
 import hljs from 'highlight.js'
-import { finished } from "stream";
 
 const chamberWidth = 7
 const leftPadding = 2; // number of tiles to spawn away from the left hand side
@@ -210,10 +209,9 @@ const Day: React.FC = () => {
     });
   }
 
-  function replaceChars(inputArray: string[], lineIndex: number, collided: boolean): string[] | boolean{
-    let outputArray : string[] = inputArray;
+  function replaceChars(inputArray: string[], lineIndex: number, collided: boolean): [string[],boolean]{
+    let outputArray : string[] = inputArray.slice();
     while (lineIndex >=0) {
-      console.log(lineIndex)
       // Split the string into an array of characters
       const fallingRockChars: string[] = inputArray[lineIndex].split('');
       let lineBelowChars: string[] = inputArray[lineIndex + 1].split('');
@@ -230,7 +228,7 @@ const Day: React.FC = () => {
           if (belowChar === '2'){
             //We are falling into an already existing rock
             collided = true;
-            return collided;
+            return [inputArray,collided];
           }
           //Drop the rock at this character
           outputLine[i] = '1'
@@ -239,7 +237,7 @@ const Day: React.FC = () => {
         outputArray[lineIndex + 1] = finalStr;
         lineIndex--
       }
-    return outputArray;
+    return [outputArray,collided];
   }
 
 
@@ -257,26 +255,19 @@ const Day: React.FC = () => {
         1;
         
       while(!collided){
-
-        console.log(convertRockShapes(updatedGameField))
-
         // We are at the bottom and cannot fall any further, stop the rock
         if(lineIndex === updatedGameField.length - 1){
           collided = true;
           continue
         }
 
-        const result = replaceChars(updatedGameField, lineIndex, collided) as string[] | boolean;
-        if (Array.isArray(result)) {
-          //We fell 1 more layer
-          updatedGameField = result;
-          //Delete the top line (duplicate)
+        const result = replaceChars(updatedGameField, lineIndex, collided);
+          collided = result[1];
+          updatedGameField = result[0];
+          if(!collided){
+            //delete top row
           updatedGameField.splice(0,1);
-        } else {
-          //We collided with the floor, do not update the game field
-          collided = result;
-        }
-        
+          }        
       }
 
       // Create a new array with all 1's changed to 2's
@@ -291,7 +282,6 @@ const Day: React.FC = () => {
 
       //The rock has finished falling, so set up next shape to spawn
       rockShapeNum = rockShapeNum + 1
-      finishedGameField.push();
       return finishedGameField;
     });
   }
