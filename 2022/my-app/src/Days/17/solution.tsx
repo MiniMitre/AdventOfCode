@@ -55,7 +55,6 @@ function convertRockShapes(rockShapes: string[]): string[] {
   for (const shape of rockShapes) {
     let shapeString = '';
     for (const char of shape) {
-
       if (char === '0') {
         shapeString += '.';
       } else {
@@ -183,7 +182,7 @@ let stop = true;
 const Day: React.FC = () => {
 
   const waitTime = 1000;
-  let rockShapeNum = 0;
+  let rockShapeNum = 2;
   const [gameField, setGameField] = useState<string[]>([]);
 
   function useRockSimulation(){
@@ -211,9 +210,38 @@ const Day: React.FC = () => {
     });
   }
 
+  function replaceChars(inputArray: string[], lineIndex: number, collided: boolean): string[] | boolean{
+    console.log(lineIndex);
+    let outputArray : string[] = inputArray;
+    // Split the string into an array of characters
+    const fallingRockChars: string[] = inputArray[lineIndex].split('');
+    let lineBelowChars: string[] = inputArray[lineIndex + 1].split('');
+    let outputLine: string[] = [];
+      
+      for (let i = 0; i < fallingRockChars.length; i++) {
+        const fallingChar = fallingRockChars[i];
+        const belowChar = lineBelowChars[i]
+        if (fallingChar !== '1'){
+          //No rock is falling
+          outputLine[i] = belowChar
+          continue
+        }
+        if (belowChar === '2'){
+          //We are falling into an already existing rock
+          collided = true;
+          return collided;
+        }
+        //Drop the rock at this character
+        outputLine[i] = '1'
+      }
+      const finalStr = outputLine.join('')
+      outputArray[lineIndex + 1] = finalStr;
+      return outputArray;
+  }
+
+
   function dropRock(){
     let collided: boolean = false
-    let count : number = 0;
     setGameField((prevGameField) => {
       let updatedGameField: string[] = prevGameField;
       //Find the bottom line of the current falling shape
@@ -225,18 +253,26 @@ const Day: React.FC = () => {
           .findIndex(line => line.includes('1')) - 
         1;
         
-      while(!collided && !stop){
+      while(!collided){
+
+        console.log(convertRockShapes(updatedGameField))
 
         // We are at the bottom and cannot fall any further, stop the rock
         if(lineIndex === updatedGameField.length - 1){
           collided = true;
+          continue
         }
 
-        count = count + 1
-        // replaces the line below with the current line
-        updatedGameField[lineIndex + 1] = updatedGameField[lineIndex];
-        updatedGameField.splice(lineIndex,1)
-
+        const result = replaceChars(updatedGameField, lineIndex, collided) as string[] | boolean;
+        if (Array.isArray(result)) {
+          //We fell 1 more layer
+          updatedGameField = result;
+          updatedGameField.splice(lineIndex,1);
+        } else {
+          //We collided with the floor, do not update the game field
+          collided = result;
+        }
+        
       }
 
       // Create a new array with all 1's changed to 2's
@@ -254,10 +290,8 @@ const Day: React.FC = () => {
       finishedGameField.push();
       return finishedGameField;
     });
-    //Move all 1's down a line
-    //Repeat moving all 1's down a line until the end of the array
-    //If there was a collision with any non zero element of the array, cancel all movements and return 'collided'
   }
+
 
   useRockSimulation();
 
