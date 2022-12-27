@@ -72,7 +72,7 @@ function convertRockShapes(rockShapes: string[]): string[] {
 
 function printRockShapes (rockShape: string[]) {
   
-  let gameplayField =  convertRockShapes(rockShape)//.slice(0,10));
+  let gameplayField =  convertRockShapes(rockShape.slice());//0,10
 
   //Add | before each line
   gameplayField = gameplayField.map(line => `|${line}`);
@@ -343,18 +343,19 @@ const rockStopNum = 10;
 
 const Day: React.FC = () => {
 
-  const waitTime = 1500;
-  let rockShapeNum = 0;
+  const waitTime: number  = 1000;
+  let rockShapeNum: number = 0;
   const [gameField, setGameField] = useState<string[]>([]);
+  let count: number = 0;
+  let topOfRock: number = 0
 
-  function useRockSimulation(){
+  function useRockSimulation(inputString: string){
     React.useEffect(() => {
       const interval = setInterval(() => {
-
         if(!stop){
           spawnRock();
           setTimeout(() => {
-            dropRock();
+            dropRock(inputString);
           }, waitTime);
         }  
        
@@ -377,41 +378,108 @@ const Day: React.FC = () => {
     });
   }
 
-  function replaceChars(inputArray: string[], lineIndex: number, collided: boolean): [string[],boolean]{
-    let outputArray : string[] = inputArray.slice();
-    while (lineIndex >=0) {
+  function dropRockOneLayer(inputArray: string[], lineIndex: number, collided: boolean): [string[],boolean]{
+    let outputArray: string[] = inputArray.slice();
+    while (lineIndex >= topOfRock) {
       // Split the string into an array of characters
       const fallingRockChars: string[] = inputArray[lineIndex].split('');
       let lineBelowChars: string[] = inputArray[lineIndex + 1].split('');
       let outputLine: string[] = [];
         
-        for (let i = 0; i < fallingRockChars.length; i++) {
-          const fallingChar = fallingRockChars[i];
-          const belowChar = lineBelowChars[i]
-          if (fallingChar !== '1'){
-            //No rock is falling, keep landed rocks.
-            outputLine[i] = belowChar ==='2' ? '2' : '0' 
-            continue
-          }
-          if (belowChar === '2'){
-            //We are falling into an already existing rock
-            collided = true;
-            return [inputArray,collided];
-          }
-          //Drop the rock at this character
-          outputLine[i] = '1'
+      for (let i = 0; i < fallingRockChars.length; i++) {
+
+        const fallingChar = fallingRockChars[i];
+        const belowChar = lineBelowChars[i]
+        if (fallingChar !== '1') {
+          //No rock is falling, keep landed rocks.
+          outputLine[i] = belowChar === '2' ? '2' : '0'
+          continue
         }
-        const finalStr = outputLine.join('')
-        outputArray[lineIndex + 1] = finalStr;
-        lineIndex--
+        if (belowChar === '2') {
+          //We are falling into an already existing rock
+          collided = true;
+          return [inputArray, collided];
+        }
+        //Drop the rock at this character
+        outputLine[i] = '1'
       }
+      const finalStr = outputLine.join('');
+      outputArray[lineIndex + 1] = finalStr;
+      lineIndex--
+    }
+    outputArray[topOfRock] = outputArray[topOfRock].replace(/1/g, '0');
+    topOfRock++;
     return [outputArray,collided];
   }
 
-  function dropRock(){
+  function blowRock(inputArray: string[], lineIndex: number, direction: string): string[]{
+    let outputArray: string[] = inputArray.slice();
+    
+    while (lineIndex >= 0) {
+      // Split the string into an array of characters
+      let fallingRockChars: string[] = inputArray[lineIndex].split('');
+      let outputChars: string[] = Array.from(Array(chamberWidth), () => '0');
+      
+      for (let i = 0; i < fallingRockChars.length; i++) {
+        const element = fallingRockChars[i];
+
+        if (element === '2') {
+          //We cannot move landed rocks
+          outputChars[i] = '2';
+          continue;
+        }
+
+        if (direction === ">") {
+          //We need to go from right to left
+          const index = fallingRockChars.length - 1 - i;
+          const fallRight = fallingRockChars[index];
+          //Right most element in array
+          if (i === 0 && fallRight === '1' ){
+            //We cannot move into the wall
+            return inputArray
+          }
+          //Remaining elements
+          if (fallRight === '1'){
+            if (fallingRockChars[index + 1] === '2') {
+              //We cannot move into a landed rock
+              return inputArray
+            }
+            else {
+              outputChars[index + 1] = '1';
+            }
+          }
+        }
+        else {
+          //We need to go from left to right
+          const fallRight = fallingRockChars[i];
+          //Right most element in array
+          if (i === 0 && fallRight === '1' ){
+            //We cannot move into the wall
+            return inputArray
+          }
+          //Remaining elements
+          if (fallRight === '1'){
+            if (fallingRockChars[i - 1] === '2') {
+              //We cannot move into a landed rock
+              return inputArray
+            }
+            else {
+              outputChars[i +- 1] = '1';
+            }
+          }
+        }
+      }
+      outputArray[lineIndex] = outputChars.join('');
+      lineIndex--
+    }
+
+    return outputArray
+  }
+
+  function dropRock(inputString: string){
     let collided: boolean = false
     setGameField((prevGameField) => {
-      let updatedGameField: string[] = prevGameField;
+      let updatedGameField: string[] = prevGameField.slice();
       //Find the bottom line of the current falling shape
       let lineIndex = 
       updatedGameField.length  - 
@@ -427,19 +495,28 @@ const Day: React.FC = () => {
       }
         
       while(!collided){
+
+        //BlowAir
+        const direction: string = inputString[count % inputString.length]
+        const blowResult = blowRock(updatedGameField,lineIndex,direction);
+        updatedGameField = blowResult;
+        count++
+
         // We are at the bottom and cannot fall any further, stop the rock
         if(lineIndex === updatedGameField.length - 1){
           collided = true;
           continue
         }
 
-        const result = replaceChars(updatedGameField, lineIndex, collided);
-          collided = result[1];
-          updatedGameField = result[0];
-          if(!collided){
-            //delete top row
-          updatedGameField.splice(0,1);
-          }        
+        //Drop the rock
+        const dropResult = dropRockOneLayer(updatedGameField, lineIndex, collided);
+        collided = dropResult[1];
+        updatedGameField = dropResult[0];
+        if(!collided && updatedGameField[0] === '0'.repeat(chamberWidth)){
+          //delete blank top row
+          updatedGameField.splice(0, 1);
+          topOfRock--;
+        }
       }
 
       // Create a new array with all 1's changed to 2's
@@ -458,7 +535,7 @@ const Day: React.FC = () => {
     });
   }
 
-  useRockSimulation();
+  useRockSimulation(exampleInput);
 
   return(
     
