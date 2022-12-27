@@ -56,6 +56,10 @@ function convertRockShapes(rockShapes: string[]): string[] {
     for (const char of shape) {
       if (char === '0') {
         shapeString += '.';
+      } else if(char === '1') {
+        shapeString += '@';
+      } else if(char === '2') {
+        shapeString += '#';
       } else {
         shapeString += char;
       }
@@ -68,7 +72,7 @@ function convertRockShapes(rockShapes: string[]): string[] {
 
 function printRockShapes (rockShape: string[]) {
   
-  let gameplayField =  convertRockShapes(rockShape);
+  let gameplayField =  convertRockShapes(rockShape)//.slice(0,10));
 
   //Add | before each line
   gameplayField = gameplayField.map(line => `|${line}`);
@@ -177,12 +181,14 @@ function toggleSimulation(){
 
 //Do not run the calculation by default
 let stop = true;
+const rockStopNum = 10;
 
 const Day: React.FC = () => {
 
-  const waitTime = 1000;
+  const waitTime = 750;
   let rockShapeNum = 0;
   const [gameField, setGameField] = useState<string[]>([]);
+  let finalRockHeight = 0;
 
   function useRockSimulation(){
     React.useEffect(() => {
@@ -196,12 +202,18 @@ const Day: React.FC = () => {
         }  
        
       }, 2*waitTime);
+
       return () => clearInterval(interval);
     }, []);
   }
 
   function spawnRock(){
     setGameField((prevGameField) => {
+      if(rockShapeNum === rockStopNum){
+        finalRockHeight = prevGameField.length;
+        stop = true;
+        return prevGameField;
+      }
       const newGameField = [...(rockSpawnShapes[rockShapeNum % 5]),
         ...prevGameField];
       newGameField.push();
@@ -240,7 +252,6 @@ const Day: React.FC = () => {
     return [outputArray,collided];
   }
 
-
   function dropRock(){
     let collided: boolean = false
     setGameField((prevGameField) => {
@@ -253,6 +264,11 @@ const Day: React.FC = () => {
           .reverse()
           .findIndex(line => line.includes('1')) - 
         1;
+
+      if(lineIndex === prevGameField.length){
+        //We have finished
+        return prevGameField;
+      }
         
       while(!collided){
         // We are at the bottom and cannot fall any further, stop the rock
@@ -285,7 +301,6 @@ const Day: React.FC = () => {
       return finishedGameField;
     });
   }
-
 
   useRockSimulation();
 
@@ -324,6 +339,7 @@ const Day: React.FC = () => {
             id = "simulation"
           >Start Simulation</button>
         </div>
+        <p>Length = {gameField.length}</p>
         <pre>
           <code className="TypeScript center max-height-300px">
             {printRockShapes(gameField)}
