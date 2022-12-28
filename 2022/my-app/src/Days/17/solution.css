@@ -18,12 +18,3 @@
 .calculation::-webkit-scrollbar{
   width: 10px;
 }
-
-.code{
-  max-height: 600px;
-}
-
-.part-2-calculation{
-  grid-column-start: 1;
-  grid-column-end: 3;
-}
