@@ -3,6 +3,7 @@ import './solution.css';
 import '../../../node_modules/highlight.js/styles/atom-one-dark-reasonable.css'
 import { exampleInput } from './example-input';
 import { myInput } from "./input";
+import { toggleExpand } from "../Functions/functions";
 
 import hljs from 'highlight.js'
 
@@ -11,7 +12,7 @@ function solvePart1(input: string){
   //Create an array with each line of the input
   let inputArray: string[] = input.split('\n')
 
-  return inputArray
+  return inputArray.slice(0,3);
 
 }
 var part1Code = 
@@ -20,7 +21,7 @@ var part1Code =
   //Create an array with each line of the input
   let inputArray: string[] = input.split('\\n')
 
-  return inputArray
+  return inputArray.slice(0,3);
 
 }`
 
@@ -33,7 +34,7 @@ function solvePart2(input: string){
   //Create an array with each line of the input
   let inputArray: string[] = input.split('\n')
 
-  return inputArray
+  return inputArray.slice(0,3);
 
 }
 
@@ -43,42 +44,13 @@ var part2Code =
   //Create an array with each line of the input
   let inputArray: string[] = input.split('\\n')
 
-  return inputArray
+  return inputArray.slice(0,3);
 
 }`
 
 //Add highlighting to code
 part2Code = hljs.highlight(part2Code,{language: 'TypeScript'}).value
 //Will need to use dangerouslySetInnerHTML but that is okay because I am not allowing user input strings
-
-const toggleExpand = (part : string) => {
-
-  const buttonId = "button" + part
-  const button = document.getElementById(buttonId)
-
-  if (button === null){
-    console.error("ButtonId: " + buttonId + " is null")
-    return
-  }
-  if(button.innerHTML.includes("View")){
-    button.innerHTML = "Hide Part " + part + " Code"
-  }else{
-    button.innerHTML = "View Part " + part + " Code"
-  }
-
-  const solutionId = "solution" + part
-  const solution = document.getElementById(solutionId);
-
-  if (solution === null){
-    console.error("SolutionId " + solutionId + " is null")
-    return
-  }
-  if (solution.style.display !== "none") {
-      solution.style.display = "none";
-  } else {
-    solution.style.display = "flex";
-  }
-}
 
 const Day04: React.FC = () => {
 
@@ -87,7 +59,7 @@ const Day04: React.FC = () => {
     <div className="container">
       <div className="iframe">
         <h1>Question:</h1>
-        <iframe title="Day" src="https://adventofcode.com/2022/"></iframe>
+        <iframe title="Day" src="https://adventofcode.com/2022/day/4"></iframe>
         <p>From <a href="https://adventofcode.com">Advent Of Code</a></p>
       </div>
       

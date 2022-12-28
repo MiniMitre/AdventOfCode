@@ -3,6 +3,7 @@ import './solution.css';
 import '../../../node_modules/highlight.js/styles/atom-one-dark-reasonable.css'
 import { exampleInput } from './example-input';
 import { myInput } from "./input";
+import { toggleExpand } from "../Functions/functions";
 
 import hljs from 'highlight.js'
 
@@ -119,35 +120,6 @@ var part2Code =
 //Add highlighting to code
 part2Code = hljs.highlight(part2Code,{language: 'TypeScript'}).value
 //Will need to use dangerouslySetInnerHTML but that is okay because I am not allowing user input strings
-
-const toggleExpand = (part : string) => {
-
-  const buttonId = "button" + part
-  const button = document.getElementById(buttonId)
-
-  if (button === null){
-    console.error("ButtonId: " + buttonId + " is null")
-    return
-  }
-  if(button.innerHTML.includes("View")){
-    button.innerHTML = "Hide Part " + part + " Code"
-  }else{
-    button.innerHTML = "View Part " + part + " Code"
-  }
-
-  const solutionId = "solution" + part
-  const solution = document.getElementById(solutionId);
-
-  if (solution === null){
-    console.error("SolutionId " + solutionId + " is null")
-    return
-  }
-  if (solution.style.display !== "none") {
-      solution.style.display = "none";
-  } else {
-    solution.style.display = "flex";
-  }
-}
 
 const Day01: React.FC = () => {
 
