@@ -1,5 +1,3 @@
-import React from "react";
-
 export const toggleExpand = (part: string) => {
 
   const buttonId = "button" + part
