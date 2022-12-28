@@ -64,10 +64,10 @@ table {
     background-color: #222;
     padding: 2px 5px;
     outline: 1px solid #555;
-
     display: flex;
     max-width: 100%;
     overflow-y: auto;
+    max-width: 33vw;
 }
 
 .typescript p{

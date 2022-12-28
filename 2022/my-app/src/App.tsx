@@ -9,6 +9,7 @@ import Unsolved from './Blank/Coming-Soon';
 import Day01 from './Days/1/solution';
 import Day02 from './Days/2/solution';
 import Day03 from './Days/3/solution';
+import Day04 from './Days/4/solution';
 import Day06 from './Days/6/solution';
 import Day17 from './Days/17/solution';
 
@@ -21,7 +22,7 @@ function App() {
         <Route path='/day-1' element={<Day01 />}></Route>
         <Route path='/day-2' element={<Day02 />}></Route>
         <Route path='/day-3' element={<Day03 />}></Route>
-        <Route path='/day-4' element={<Unsolved />}></Route>
+        <Route path='/day-4' element={<Day04 />}></Route>
         <Route path='/day-5' element={<Unsolved />}></Route>
         <Route path='/day-6' element={<Day06 />}></Route>
         <Route path='/day-7' element={<Unsolved />}></Route>

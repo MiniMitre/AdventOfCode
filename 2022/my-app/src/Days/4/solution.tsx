@@ -80,7 +80,7 @@ const toggleExpand = (part : string) => {
   }
 }
 
-const Day: React.FC = () => {
+const Day04: React.FC = () => {
 
   return(
     
@@ -197,4 +197,4 @@ const Day: React.FC = () => {
   )
 }
 
-export default Day
+export default Day04
