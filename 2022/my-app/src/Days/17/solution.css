@@ -11,10 +11,14 @@
   justify-content: center;
 }
 
-.max-height-300px{
+.calculation{
   max-height: 300px;
 }
 
-.max-height-300px::-webkit-scrollbar{
+.calculation::-webkit-scrollbar{
   width: 10px;
+}
+
+.code{
+  max-height: 600px;
 }

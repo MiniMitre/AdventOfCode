@@ -629,7 +629,7 @@ const Day: React.FC = () => {
         </div>
 
         <pre>
-          <code className="TypeScript center max-height-300px">
+          <code className="TypeScript center calculation">
             {printRockShapes(gameField)}
           </code>
         </pre>
@@ -658,7 +658,7 @@ const Day: React.FC = () => {
 
       <div className="explanation">
         <pre>
-          <code className="TypeScript" id="solution1" style={{ display: "none" }}>
+          <code className="TypeScript code" id="solution1" style={{ display: "none" }}>
             <div dangerouslySetInnerHTML={{ __html: part1Code }} />
           </code>
         </pre>
