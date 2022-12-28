@@ -12,18 +12,60 @@ function solvePart1(input: string){
   //Create an array with each line of the input
   let inputArray: string[] = input.split('\n')
 
-  return inputArray.slice(0,3);
+  let fullyContans: number = 0;
+
+  for (const pair of inputArray) {
+    const [firstElf, secondElf] = pair.split(',');
+    const firstElfArray = firstElf.split('-');
+    const secondElfArray = secondElf.split('-');
+    
+    const firstElfNumberArray = firstElfArray.map(string => parseInt(string, 10));
+    const secondElfNumberArray = secondElfArray.map(string => parseInt(string, 10));
+
+    //Check second ∈ first
+    if ((firstElfNumberArray[0] <= secondElfNumberArray[0]) &&
+      (firstElfNumberArray[1] >= secondElfNumberArray[1])) {
+      fullyContans++;
+      
+    //Check first ∈ second
+    } else if (firstElfNumberArray[0] >= secondElfNumberArray[0] &&
+      firstElfNumberArray[1] <= secondElfNumberArray[1]) {
+      fullyContans++;
+    }
+    
+  }
+
+  return fullyContans;
 
 }
 var part1Code = 
-`function solvePart2(input: string){
+`//Create an array with each line of the input
+let inputArray: string[] = input.split('\\n')
 
-  //Create an array with each line of the input
-  let inputArray: string[] = input.split('\\n')
+let fullyContans: number = 0;
 
-  return inputArray.slice(0,3);
+for (const pair of inputArray) {
+  const [firstElf, secondElf] = pair.split(',');
+  const firstElfArray = firstElf.split('-');
+  const secondElfArray = secondElf.split('-');
+  
+  const firstElfNumberArray = firstElfArray.map(string => parseInt(string, 10));
+  const secondElfNumberArray = secondElfArray.map(string => parseInt(string, 10));
 
-}`
+  //Check second ∈ first
+  if ((firstElfNumberArray[0] <= secondElfNumberArray[0]) &&
+    (firstElfNumberArray[1] >= secondElfNumberArray[1])) {
+    fullyContans++;
+    
+  //Check first ∈ second
+  } else if (firstElfNumberArray[0] >= secondElfNumberArray[0] &&
+    firstElfNumberArray[1] <= secondElfNumberArray[1]) {
+    fullyContans++;
+  }
+  
+}
+
+return fullyContans;`
 
 //Add highlighting to code
 part1Code = hljs.highlight(part1Code,{language: 'TypeScript'}).value
@@ -34,7 +76,29 @@ function solvePart2(input: string){
   //Create an array with each line of the input
   let inputArray: string[] = input.split('\n')
 
-  return inputArray.slice(0,3);
+  let partiallyContains: number = 0;
+
+  for (const pair of inputArray) {
+    const [firstElf, secondElf] = pair.split(',');
+    const firstElfArray = firstElf.split('-');
+    const secondElfArray = secondElf.split('-');
+    
+    const firstElfNumberArray = firstElfArray.map(string => parseInt(string, 10));
+    const secondElfNumberArray = secondElfArray.map(string => parseInt(string, 10));
+
+    //
+    if (firstElfNumberArray[1] < secondElfNumberArray[0]) {
+      continue;
+    }
+
+    if (firstElfNumberArray[0] > secondElfNumberArray[1]) {
+      continue;
+    }
+    partiallyContains++
+    
+  }
+
+  return partiallyContains;
 
 }
 
@@ -44,7 +108,29 @@ var part2Code =
   //Create an array with each line of the input
   let inputArray: string[] = input.split('\\n')
 
-  return inputArray.slice(0,3);
+  let partiallyContains: number = 0;
+
+  for (const pair of inputArray) {
+    const [firstElf, secondElf] = pair.split(',');
+    const firstElfArray = firstElf.split('-');
+    const secondElfArray = secondElf.split('-');
+    
+    const firstElfNumberArray = firstElfArray.map(string => parseInt(string, 10));
+    const secondElfNumberArray = secondElfArray.map(string => parseInt(string, 10));
+
+    //
+    if (firstElfNumberArray[1] < secondElfNumberArray[0]) {
+      continue;
+    }
+
+    if (firstElfNumberArray[0] > secondElfNumberArray[1]) {
+      continue;
+    }
+    partiallyContains++
+    
+  }
+
+  return partiallyContains;
 
 }`
 
@@ -65,7 +151,7 @@ const Day04: React.FC = () => {
       
       <div className="part">
         <h2>Part 1:</h2>
-        <p>...</p>
+        <p>In how many assignment pairs does one range fully contain the other?</p>
       </div>
 
       <div className="input">
@@ -116,7 +202,7 @@ const Day04: React.FC = () => {
 
       <div className="part">
         <h2>Part 2:</h2>
-        <p>...</p>
+        <p>In how many assignment pairs do the ranges overlap?</p>
       </div>
 
       <div className="input">
