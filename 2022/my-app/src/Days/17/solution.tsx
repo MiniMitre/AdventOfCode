@@ -72,7 +72,7 @@ function convertRockShapes(rockShapes: string[]): string[] {
 
 function printRockShapes (rockShape: string[]) {
   
-  let gameplayField =  convertRockShapes(rockShape.slice(0,10));
+  let gameplayField =  convertRockShapes(rockShape.slice(0,8));
 
   //Add | before each line
   gameplayField = gameplayField.map(line => `|${line}`);
@@ -84,12 +84,6 @@ function printRockShapes (rockShape: string[]) {
   gameplayField.push( "+" + "-".repeat(chamberWidth) + "+");
 
   return gameplayField
-
-}
-
-function solvePart1(input: string){
-
-  return input;
 
 }
 
@@ -143,7 +137,6 @@ const rockStopNum = 2022;
 
 const Day: React.FC = () => {
 
-  const waitTime: number  = 0;
   let rockShapeNum: number = 0;
   const [gameField, setGameField] = useState<string[]>([]);
   let count: number = 0;
@@ -163,8 +156,7 @@ const Day: React.FC = () => {
 
   function spawnRock(){
     setGameField((prevGameField) => {
-      //We start at rock number 0
-      if(rockShapeNum === rockStopNum - 1){
+      if(rockShapeNum === rockStopNum){
         stop = true;
         return prevGameField;
       }
@@ -297,7 +289,6 @@ const Day: React.FC = () => {
         // We are at the bottom and cannot fall any further, stop the rock
         if(lineIndex === updatedGameField.length - 1){
           collided = true;
-          rockShapeNum = rockShapeNum + 1
           continue
         }
 
@@ -334,27 +325,16 @@ const Day: React.FC = () => {
 part1Code = hljs.highlight(part1Code,{language: 'TypeScript'}).value
 //Will need to use dangerouslySetInnerHTML but that is okay because I am not allowing user input strings
 
-function solvePart2(input: string){
-
-  //Create an array with each line of the input
-  let inputArray: string[] = input.split('\n')
-
-  return inputArray
-
-}
-
 var part2Code = 
-`function solvePart2(input: string){
-
-  //Create an array with each line of the input
-  let inputArray: string[] = input.split('\\n')
-
-  return inputArray
-
-}`
+`const gradient = 1750;
+const gradientHeight = 2781;
+const remainderHeight = 1219;
+const partTwoQuotient = Math.floor((1000000000000 - 3) / gradient);
+const partTwoAnswer = gradientHeight * partTwoQuotient + remainderHeight + 13;
+`
 
 //Add highlighting to code
-part2Code = hljs.highlight(part1Code,{language: 'TypeScript'}).value
+part2Code = hljs.highlight(part2Code,{language: 'TypeScript'}).value
 //Will need to use dangerouslySetInnerHTML but that is okay because I am not allowing user input strings
 
 function toggleExpand (part : string) {
@@ -410,12 +390,18 @@ function toggleSimulation(){
 let stop = true;
 const rockStopNum = 2022;
 
+const gradient = 1750;
+const gradientHeight = 2781;
+const remainderHeight = 1219;
+const partTwoQuotient = Math.floor((1000000000000 - 3) / gradient);
+const partTwoAnswer = gradientHeight * partTwoQuotient + remainderHeight + 13;
+
 const Day: React.FC = () => {
 
   let rockShapeNum: number = 0;
   const [gameField, setGameField] = useState<string[]>([]);
   let count: number = 0;
-  let topOfRock: number = 0
+  let topOfRock: number = 0;
 
   function useRockSimulation(inputString: string){
     React.useEffect(() => {
@@ -431,6 +417,7 @@ const Day: React.FC = () => {
 
   function spawnRock(){
     setGameField((prevGameField) => {
+      
       if(rockShapeNum === rockStopNum){
         stop = true;
         return prevGameField;
@@ -632,7 +619,7 @@ const Day: React.FC = () => {
         </div>
 
         <pre>
-          <code className="TypeScript center max-height-300px">
+          <code className="TypeScript center calculation">
             {printRockShapes(gameField)}
           </code>
         </pre>
@@ -661,32 +648,24 @@ const Day: React.FC = () => {
 
       <div className="explanation">
         <pre>
-          <code className="TypeScript" id="solution1" style={{ display: "none" }}>
+          <code className="TypeScript code" id="solution1" style={{ display: "none" }}>
             <div dangerouslySetInnerHTML={{ __html: part1Code }} />
           </code>
         </pre>
       </div>
 
-      {/* <div className="part">
+      <div className="part">
         <h2>Part 2:</h2>
-        <p>...</p>
-      </div>
-
-      <div className="input">
-
-        <h3>Input:</h3>
-
-        <pre>
-          <code className="TypeScript">
-            {exampleInput}
-          </code>
-        </pre>
-
+        <p>How many units tall will the tower of rocks be after 1000000000000 rocks have stopped falling?</p>
       </div>
 
       <div className="part-2-calculation">
         <h3>Calculation:</h3>
-        <p>...</p>
+        <p>Using the values from part 1 sumulation. We see that the pattern of fallen rocks repeats.</p>
+        <p>The formula is <i>a<sub>n</sub></i> = 2781<i>n</i> + 13 (for <i>n</i> ≥ 1)</p>
+        <p>So, all we need to do it calculate the remainder after dividing 1000000000000 - 3 by 1750</p>
+        <p>Then the answer is 2781*<i>n</i> + 13 + <i>r</i>. Where</p>
+        <p>1000000000000 = 3 + n*1750 + r</p>
       </div>
 
       <div className="part-2-solution">
@@ -694,13 +673,13 @@ const Day: React.FC = () => {
         <p>Example:</p>
         <pre>
           <code className="TypeScript">
-            {solvePart2(exampleInput)}
+            {1514285714288}
           </code>
         </pre>
         <p>Using my puzzle input:</p>
         <pre>
           <code className="TypeScript">
-            {solvePart2(myInput)}
+            {partTwoAnswer}
           </code>
         </pre>
         <div className="button">
@@ -716,7 +695,7 @@ const Day: React.FC = () => {
           <div dangerouslySetInnerHTML={{ __html: part2Code }} />
           </code>
         </pre>
-      </div> */}
+      </div>
 
     </div>
   )
