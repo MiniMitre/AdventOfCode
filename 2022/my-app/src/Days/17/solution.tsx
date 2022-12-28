@@ -631,7 +631,7 @@ const Day: React.FC = () => {
         <p>How many units tall will the tower of rocks be after 1000000000000 rocks have stopped falling?</p>
       </div>
 
-      <div className="part-2-calculation">
+      <div className="part-2-calculation column13">
         <h3>Calculation:</h3>
         <p>Using the values from part 1 sumulation. We see that the pattern of fallen rocks repeats.</p>
         <p>The formula is <i>a<sub>n</sub></i> = 2781<i>n</i> + 13 (for <i>n</i> ≥ 1)</p>

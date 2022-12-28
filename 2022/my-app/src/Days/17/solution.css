@@ -19,7 +19,7 @@
   width: 10px;
 }
 
-.part-2-calculation{
+.column13{
   grid-column-start: 1;
   grid-column-end: 3;
 }
