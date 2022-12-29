@@ -150,7 +150,7 @@ const Day01: React.FC = () => {
     
     <div className="container">
       <div className="iframe">
-        <h1>Question:</h1>
+        <h1>Day 1:</h1>
         <iframe title="Day1" src="https://adventofcode.com/2022/day/1"></iframe>
         <p>From <a href="https://adventofcode.com">Advent Of Code</a></p>
       </div>
