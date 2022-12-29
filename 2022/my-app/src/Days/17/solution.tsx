@@ -358,6 +358,21 @@ function toggleSimulation(){
   stop = !stop;
 }
 
+function disableButton() {
+  const buttonId = "simulation";
+  const button = document.getElementById(buttonId)
+
+  if (button === null){
+    console.error("ButtonId: " + buttonId + " is null")
+    return
+  }
+
+  button.innerHTML = "Complete!"
+  button.classList.remove("red");
+  button.classList.add("disabled");
+
+}
+
 //Do not run the calculation by default
 let stop = true;
 const rockStopNum = 2022;
@@ -390,7 +405,8 @@ const Day: React.FC = () => {
   function spawnRock(){
     setGameField((prevGameField) => {
       
-      if(rockShapeNum === rockStopNum){
+      if (rockShapeNum === rockStopNum) {
+        disableButton();
         stop = true;
         return prevGameField;
       }
@@ -558,7 +574,7 @@ const Day: React.FC = () => {
     
     <div className="container">
       <div className="iframe">
-        <h1>Question:</h1>
+        <h1>Day 17:</h1>
         <iframe title="Day17" src="https://adventofcode.com/2022/day/17"></iframe>
         <p>From <a href="https://adventofcode.com">Advent Of Code</a></p>
       </div>

@@ -23,3 +23,7 @@
   grid-column-start: 1;
   grid-column-end: 3;
 }
+
+.disabled{
+  pointer-events: none;
+}
