@@ -86,7 +86,6 @@ function solvePart2(input: string){
     const firstElfNumberArray = firstElfArray.map(string => parseInt(string, 10));
     const secondElfNumberArray = secondElfArray.map(string => parseInt(string, 10));
 
-    //
     if (firstElfNumberArray[1] < secondElfNumberArray[0]) {
       continue;
     }
@@ -118,7 +117,6 @@ var part2Code =
     const firstElfNumberArray = firstElfArray.map(string => parseInt(string, 10));
     const secondElfNumberArray = secondElfArray.map(string => parseInt(string, 10));
 
-    //
     if (firstElfNumberArray[1] < secondElfNumberArray[0]) {
       continue;
     }
@@ -168,7 +166,9 @@ const Day04: React.FC = () => {
 
       <div className="part-1-calculation">
         <h3>Calculation:</h3>
-        <p>...</p>
+        <p>First check if the second set is entirely contained within the first</p>
+        <p>Then check if the first set is entirely contained within the second</p>
+        <p>If either case is true, increment the counter.</p>
       </div>
 
       <div className="part-1-solution">
@@ -219,7 +219,9 @@ const Day04: React.FC = () => {
 
       <div className="part-2-calculation">
         <h3>Calculation:</h3>
-        <p>...</p>
+        <p>If the first elf's values are strictly less than the second elf's values, there is no overlap.</p>
+        <p>Similarly, if second elf's values are strictly less than the first elf's values, there is no overlap.</p>
+        <p>Otherwise, there is an overlap, so increment the counter.</p>
       </div>
 
       <div className="part-2-solution">
