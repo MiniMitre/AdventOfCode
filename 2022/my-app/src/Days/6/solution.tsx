@@ -170,7 +170,7 @@ const Day06: React.FC = () => {
         <h3>Input:</h3>
 
         <pre>
-          <code className="TypeScript">
+          <code className="TypeScript limit-width">
             {exampleInput}
           </code>
         </pre>
@@ -202,7 +202,7 @@ const Day06: React.FC = () => {
             {solvePart1(myInput)}
           </code>
         </pre>
-        <div className="button">
+        <div className="view-code-button">
           <button onClick={()=>toggleExpand("1")} id="button1">
             View Part 1 Code
           </button>
@@ -227,7 +227,7 @@ const Day06: React.FC = () => {
         <h3>Input:</h3>
 
         <pre>
-          <code className="TypeScript">
+          <code className="TypeScript limit-width">
             {exampleInput}
           </code>
         </pre>
@@ -258,7 +258,7 @@ const Day06: React.FC = () => {
             {solvePart2(myInput)}
           </code>
         </pre>
-        <div className="button">
+        <div className="view-code-button">
           <button onClick={()=>toggleExpand("2")} id="button2">
             View Part 2 Code
           </button>

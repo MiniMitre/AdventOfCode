@@ -2,7 +2,6 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
-import Home from './Home/Home'
 import Topbar from './Topbar/Topbar';
 
 import Unsolved from './Blank/Coming-Soon';
@@ -18,7 +17,7 @@ function App() {
     <>
       <Topbar />
       <Routes>
-        <Route path='/' element={<Home />}></Route>
+        <Route path='/' element={<Day17 />}></Route>
         <Route path='/day-1' element={<Day01 />}></Route>
         <Route path='/day-2' element={<Day02 />}></Route>
         <Route path='/day-3' element={<Day03 />}></Route>
