@@ -65,8 +65,11 @@ table {
     padding: 2px 5px;
     outline: 1px solid #555;
     display: flex;
-    max-width: 100%;
     overflow-y: auto;
+}
+
+.limit-width{
+    max-width: 33vw;
 }
 
 .typescript p{
@@ -101,7 +104,13 @@ button{
     cursor: pointer;
 }
 
-.button{
+button:active{
+    transition: 100ms;
+    opacity: 50%;
+    transform: scale(0.95);
+}
+
+.view-code-button{
     display: flex;
     align-items: center;
     grid-column-start: 2;

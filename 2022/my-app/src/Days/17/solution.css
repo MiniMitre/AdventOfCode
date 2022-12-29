@@ -1,9 +1,16 @@
 .no-background{
   background-color: inherit;
+}
+
+.outline{
   outline: 4px solid grey;
 }
+
 .center{
   margin: auto;
+  display: flex;
+  flex-direction:row;
+  justify-content: center;
 }
 
 .buttons{
@@ -26,4 +33,17 @@
 
 .disabled{
   pointer-events: none;
+}
+
+#simulation{
+  height: max-content;
+  margin: auto;
+}
+
+#reset{
+  background-image: url(./img/Reset.png);
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 88px;
 }

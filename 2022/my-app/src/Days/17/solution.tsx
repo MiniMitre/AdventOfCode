@@ -6,6 +6,8 @@ import { myInput } from "./input";
 import { toggleExpand } from "../Functions/functions";
 
 import hljs from 'highlight.js'
+import { wait } from "@testing-library/user-event/dist/utils";
+import { stringify } from "@vanillaes/csv";
 
 const chamberWidth = 7
 const leftPadding = 2; // number of tiles to spawn away from the left hand side
@@ -73,7 +75,7 @@ function convertRockShapes(rockShapes: string[]): string[] {
 
 function printRockShapes (rockShape: string[]) {
   
-  let gameplayField =  convertRockShapes(rockShape.slice(0,8));
+  let gameplayField =  convertRockShapes(rockShape.slice(0,11));
 
   //Add | before each line
   gameplayField = gameplayField.map(line => `|${line}`);
@@ -338,57 +340,89 @@ const partTwoAnswer = gradientHeight * partTwoQuotient + remainderHeight + 13;
 part2Code = hljs.highlight(part2Code,{language: 'TypeScript'}).value
 //Will need to use dangerouslySetInnerHTML but that is okay because I am not allowing user input strings
 
-function toggleSimulation(){
-  const buttonId = "simulation";
-  const button = document.getElementById(buttonId)
+function getButtonById(id: string): HTMLElement | null {
+  
+  const button = document.getElementById(id)
+  if (button === null) {
+    console.error(`Button with id ${id} is null`);
+  }
 
-  if (button === null){
-    console.error("ButtonId: " + buttonId + " is null")
-    return
+  return button;
+}
+
+function setButtonProperties(button: HTMLElement, innerHTML: string, addClass: string, removeClasses: string[]) {
+  button.innerHTML = innerHTML;
+  
+  button.classList.add(addClass);
+  
+  if (removeClasses) {
+    removeClasses.forEach(className => {
+      button.classList.remove(className);
+    });
   }
-  if (button.innerHTML.includes("Start")) {
-    button.innerHTML = "Stop Simulation";
-    button.classList.add("red");
-    button.classList.remove("green")
-  } else {
-    button.innerHTML = "Start Simulation";
-    button.classList.remove("red");
-    button.classList.add("green")
-  }
+}
+
+function setStartButton(button: HTMLElement) {
+  setButtonProperties(button, "Start Simulation", "green", ["red"]);
+}
+
+function setStopButton(button: HTMLElement) {
+  setButtonProperties(button, "Stop Simulation", "red", ["green"]);
+}
+
+function toggleSimulation() {
+  const button = getButtonById("simulation");
+
+  if (!button) return;
+
+  button.innerHTML.includes("Start")
+    ? setStopButton(button)
+    : setStartButton(button);
   stop = !stop;
 }
 
 function disableButton() {
-  const buttonId = "simulation";
-  const button = document.getElementById(buttonId)
+  const button = getButtonById("simulation");
+  if (!button) return;
 
-  if (button === null){
-    console.error("ButtonId: " + buttonId + " is null")
-    return
-  }
-
-  button.innerHTML = "Complete!"
-  button.classList.remove("red");
-  button.classList.add("disabled");
-
+  setButtonProperties(button, "Complete!", "disabled", ["red"]);
 }
+
+const rockStopNum: number = 2022;
+const gradient: number = 1750;
+const gradientHeight: number = 2781;
+const remainderHeight: number = 1219;
+const partTwoQuotient: number = Math.floor((1000000000000 - 3) / gradient);
+const partTwoAnswer: number = gradientHeight * partTwoQuotient + remainderHeight + 13;
 
 //Do not run the calculation by default
 let stop = true;
-const rockStopNum = 2022;
-
-const gradient = 1750;
-const gradientHeight = 2781;
-const remainderHeight = 1219;
-const partTwoQuotient = Math.floor((1000000000000 - 3) / gradient);
-const partTwoAnswer = gradientHeight * partTwoQuotient + remainderHeight + 13;
+let rockShapeNum: number = 0;
+let count: number = 0;
+let topOfRock: number = 0;
 
 const Day: React.FC = () => {
 
-  let rockShapeNum: number = 0;
+  function resetSimulation() {
+    stop = true;
+    rockShapeNum = 0;
+    count = 0;
+    topOfRock = 0;
+  
+    const button = getButtonById("simulation");
+    if (!button) return;
+    
+    if (button.innerHTML.includes("Stop")) {
+      setStartButton(button);
+    } else if (button.innerHTML.includes("Complete!")) {
+      setButtonProperties(button, "Start Simulation", "green", ["disabled", "red"]);
+    }
+
+    setGameField([]);   
+
+  }
+
   const [gameField, setGameField] = useState<string[]>([]);
-  let count: number = 0;
-  let topOfRock: number = 0;
 
   function useRockSimulation(inputString: string){
     React.useEffect(() => {
@@ -404,7 +438,6 @@ const Day: React.FC = () => {
 
   function spawnRock(){
     setGameField((prevGameField) => {
-      
       if (rockShapeNum === rockStopNum) {
         disableButton();
         stop = true;
@@ -508,15 +541,15 @@ const Day: React.FC = () => {
     setGameField((prevGameField) => {
       let updatedGameField: string[] = prevGameField.slice();
       //Find the bottom line of the current falling shape
-      let lineIndex = 
-      updatedGameField.length  - 
-      updatedGameField
+      let lineIndex =
+        updatedGameField.length -
+        updatedGameField
           .slice()
           .reverse()
-          .findIndex(line => line.includes('1')) - 
+          .findIndex(line => line.includes('1')) -
         1;
 
-      if(lineIndex === prevGameField.length){
+      if (lineIndex === prevGameField.length) {
         //We have finished
         return prevGameField;
       }
@@ -539,17 +572,16 @@ const Day: React.FC = () => {
         // We are at the bottom and cannot fall any further, stop the rock
         if(lineIndex === updatedGameField.length - 1){
           collided = true;
-          continue
-        }
-
-        const dropResult = dropRockOneLayer(updatedGameField, lineIndex, collided);
+        } else {
+          const dropResult = dropRockOneLayer(updatedGameField, lineIndex, collided);
         collided = dropResult[1];
         updatedGameField = dropResult[0];
         if(!collided && updatedGameField[0] === '0'.repeat(chamberWidth)){
           //delete top row if blank
           updatedGameField.splice(0, 1);
           topOfRock--;
-        }
+          }
+        }                    
       }
 
       // Create a new array with all 1's changed to 2's
@@ -566,6 +598,7 @@ const Day: React.FC = () => {
       rockShapeNum = rockShapeNum + 1
       return finishedGameField;
     });
+    
   }
 
   useRockSimulation(myInput);
@@ -589,21 +622,29 @@ const Day: React.FC = () => {
         <h3>Input:</h3>
 
         <pre>
-          <code className="TypeScript">
+          <code className="TypeScript limit-width">
             {exampleInput}
           </code>
         </pre>
 
+        <div className="center">
+          <button 
+              onClick={toggleSimulation}
+              className="green no-background outline"
+              id = "simulation"
+          >Start Simulation</button>
+          <button 
+              onClick={resetSimulation}
+              className="no-background"
+              id = "reset"
+            >Reset</button>
+        </div>
       </div>
 
       <div className="part-1-calculation">
         <h3>Calculation:</h3>
         <div className="buttons">
-          <button
-            onClick={toggleSimulation}
-            className="green no-background"
-            id = "simulation"
-          >Start Simulation</button>
+          
         </div>
 
         <pre>
@@ -627,7 +668,7 @@ const Day: React.FC = () => {
             {gameField.length}
           </code>
         </pre>
-        <div className="button">
+        <div className="view-code-button">
           <button onClick={()=>toggleExpand("1")} id="button1">
             View Part 1 Code
           </button>
@@ -670,7 +711,7 @@ const Day: React.FC = () => {
             {partTwoAnswer}
           </code>
         </pre>
-        <div className="button">
+        <div className="view-code-button">
           <button onClick={()=>toggleExpand("2")} id="button2">
             View Part 2 Code
           </button>
