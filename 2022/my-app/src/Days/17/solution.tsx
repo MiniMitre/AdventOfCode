@@ -689,10 +689,12 @@ const Day: React.FC = () => {
       <div className="part-2-calculation column13">
         <h3>Calculation:</h3>
         <p>Using the values from part 1 sumulation. We see that the pattern of fallen rocks repeats every 1750 rocks (starting after rock #3)</p>
-        <p>The formula is <i>a<sub>n</sub></i> = 2781<i>n</i> + 13 (for <i>n</i> ≥ 1)</p>
-        <p>So, all we need to do it calculate the remainder after dividing 1000000000000 - 3 by 1750</p>
-        <p>Then the answer is 2781*<i>n</i> + 13 + <i>r</i>. Where</p>
-        <p>1000000000000 = 3 + n*1750 + r</p>
+        <p>The height after 1750 * <i>n</i> + 3 rocks is: <i>a<sub>n</sub></i> = 2781 * <i>n</i> + 13 (for <i>n</i> ≥ 1)</p>
+        <p>So, all we need to do is calculate the quotient <i>q</i> and remainder <i>r</i> after dividing (1000000000000 - 3) by 1750</p>
+        <p><i>q</i> = 57142857</p>
+        <p> r = 247</p>
+        <p>Then we caclulate the height at 247: <i>h</i> = 1219</p>
+        <p>So the answer is 2781 * <i>q</i> + <i>h</i> + 13</p>
       </div>
 
       <div className="part-2-solution">
