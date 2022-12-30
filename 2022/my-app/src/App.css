@@ -66,6 +66,7 @@ table {
     outline: 1px solid #555;
     display: flex;
     overflow-y: auto;
+    width: 100%;
 }
 
 .limit-width{
