@@ -6,8 +6,6 @@ import { myInput } from "./input";
 import { toggleExpand } from "../Functions/functions";
 
 import hljs from 'highlight.js'
-import { wait } from "@testing-library/user-event/dist/utils";
-import { stringify } from "@vanillaes/csv";
 
 const chamberWidth = 7
 const leftPadding = 2; // number of tiles to spawn away from the left hand side
@@ -690,7 +688,7 @@ const Day: React.FC = () => {
 
       <div className="part-2-calculation column13">
         <h3>Calculation:</h3>
-        <p>Using the values from part 1 sumulation. We see that the pattern of fallen rocks repeats.</p>
+        <p>Using the values from part 1 sumulation. We see that the pattern of fallen rocks repeats every 1750 rocks (starting after rock #3)</p>
         <p>The formula is <i>a<sub>n</sub></i> = 2781<i>n</i> + 13 (for <i>n</i> ≥ 1)</p>
         <p>So, all we need to do it calculate the remainder after dividing 1000000000000 - 3 by 1750</p>
         <p>Then the answer is 2781*<i>n</i> + 13 + <i>r</i>. Where</p>
