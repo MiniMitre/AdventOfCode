@@ -2,12 +2,11 @@
   background-color: inherit;
 }
 
-.outline {
-  outline: 4px solid grey;
+.grey-border{
+  border: 4px solid grey;;
 }
 
-.flex-center {
-  margin: auto;
+.flex-simulation {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -27,7 +26,7 @@
 
 #simulation {
   height: max-content;
-  margin: auto;
+  margin: 1rem auto;
 }
 
 #reset {
@@ -36,5 +35,5 @@
   background-repeat: no-repeat;
   background-position: center;
   height: 88px;
-  margin: 10px auto;
+  margin: auto;
 }

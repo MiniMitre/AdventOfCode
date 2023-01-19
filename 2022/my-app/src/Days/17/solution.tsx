@@ -639,10 +639,10 @@ const Day: React.FC = () => {
           <code className="TypeScript limit-width-33">{exampleInput}</code>
         </pre>
 
-        <div className="flex-center">
+        <div className="flex-simulation">
           <button
             onClick={toggleSimulation}
-            className="green no-background outline"
+            className="green no-background grey-border"
             id="simulation">
             Start Simulation
           </button>
@@ -697,7 +697,7 @@ const Day: React.FC = () => {
       <div className="part">
         <h2>Part 2:</h2>
         <p>
-          How many units tall will the tower of rocks be after 1000000000000
+          How many units tall will the tower of rocks be after 1,000,000,000,000
           rocks have stopped falling?
         </p>
       </div>
@@ -706,28 +706,29 @@ const Day: React.FC = () => {
         <h3>Calculation:</h3>
         <p>
           Using the values from part 1 sumulation. We see that the pattern of
-          fallen rocks repeats every 1750 rocks (starting after rock #3)
+          fallen rocks repeats every 1,750 rocks (starting after rock #3)
         </p>
         <p>
-          The height after 1750 * <i>n</i> + 3 rocks is:{" "}
+          The height after 1,750 * <i>n</i> + 3 rocks is:{" "}
           <i>
             a<sub>n</sub>
           </i>{" "}
-          = 2781 * <i>n</i> + 13 (for <i>n</i> ≥ 1)
+          = 2,781 * <i>n</i> + 13 (for <i>n</i> ≥ 1)
         </p>
         <p>
           So, all we need to do is calculate the quotient <i>q</i> and remainder{" "}
-          <i>r</i> after dividing (1000000000000 - 3) by 1750
+          <i>r</i> after dividing (1,000,000,000,000 - 3) by 1,750
         </p>
         <p>
-          <i>q</i> = 57142857
+          <i>q</i> = 571,42,857
         </p>
         <p> r = 247</p>
+        <p>Then we caclulate the height at 247</p>
         <p>
-          Then we caclulate the height at 247: <i>h</i> = 1219
+          <i>h</i> = 1,219
         </p>
         <p>
-          So the answer is 2781 * <i>q</i> + <i>h</i> + 13
+          So the answer is 2781 * <i>q</i> + <i>h</i> + 13 = 1,589,142,857,183
         </p>
       </div>
 

@@ -4,7 +4,7 @@
   color: #fff;
   max-width: 1550px;
   margin: auto;
-  padding: 100px 2rem 300px 2rem;
+  padding: 70px 2rem 10rem 2rem;
   grid-template-columns: 2fr 1fr 1fr 2fr;
   gap: 2rem;
 }
@@ -37,6 +37,7 @@ h2 {
 .TypeScript{
     font-size:20px;
     width: fit-content;
+    max-width: 100%;
     background-color: #222;
     padding: 2px 5px;
     outline: 1px solid #555;
@@ -87,11 +88,11 @@ button:active {
   align-items: center;
 }
 
+/* Limit width for code blocks */
 .limit-width-33 {
   max-width: 33vw;
   overflow: auto;
 }
-
 .limit-width-50 {
   max-width: 50vw;
   overflow: auto;
@@ -149,10 +150,15 @@ pre::-webkit-scrollbar{
 }
 
 @media (max-width: 700px) {
+
+  .container{
+    gap: 1rem;
+  }
+
+  /* Remove width limit for code blocks */
   .limit-width-33 {
     max-width: 100%;
   }
-  
   .limit-width-50 {
     max-width: 100%;
   }
