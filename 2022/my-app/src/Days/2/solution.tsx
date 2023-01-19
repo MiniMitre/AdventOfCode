@@ -270,7 +270,7 @@ const Day01: React.FC = () => {
         <h3>Input:</h3>
 
         <pre>
-          <code className="TypeScript limit-width">{exampleInput}</code>
+          <code className="TypeScript limit-width-33">{exampleInput}</code>
         </pre>
       </div>
 
@@ -318,8 +318,7 @@ const Day01: React.FC = () => {
           <code
             className="TypeScript"
             id="solution1"
-            style={{ display: "none" }}
-          >
+            style={{ display: "none" }}>
             <div dangerouslySetInnerHTML={{ __html: part1Code }} />
           </code>
         </pre>
@@ -332,14 +331,6 @@ const Day01: React.FC = () => {
           your total score be if everything goes exactly according to your
           strategy guide?
         </p>
-      </div>
-
-      <div className="input">
-        <h3>Input:</h3>
-
-        <pre>
-          <code className="TypeScript limit-width">{exampleInput}</code>
-        </pre>
       </div>
 
       <div className="part-2-calculation">
@@ -386,8 +377,7 @@ const Day01: React.FC = () => {
           <code
             className="TypeScript"
             id="solution2"
-            style={{ display: "none" }}
-          >
+            style={{ display: "none" }}>
             <div dangerouslySetInnerHTML={{ __html: part2Code }} />
           </code>
         </pre>

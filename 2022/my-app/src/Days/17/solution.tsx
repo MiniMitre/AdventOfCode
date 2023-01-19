@@ -618,8 +618,7 @@ const Day: React.FC = () => {
         <h1>Day 17:</h1>
         <iframe
           title="Day17"
-          src="https://adventofcode.com/2022/day/17"
-        ></iframe>
+          src="https://adventofcode.com/2022/day/17"></iframe>
         <p>
           From <a href="https://adventofcode.com">Advent Of Code</a>
         </p>
@@ -637,22 +636,20 @@ const Day: React.FC = () => {
         <h3>Input:</h3>
 
         <pre>
-          <code className="TypeScript limit-width">{exampleInput}</code>
+          <code className="TypeScript limit-width-33">{exampleInput}</code>
         </pre>
 
-        <div className="center">
+        <div className="flex-center">
           <button
             onClick={toggleSimulation}
             className="green no-background outline"
-            id="simulation"
-          >
+            id="simulation">
             Start Simulation
           </button>
           <button
             onClick={resetSimulation}
             className="no-background"
-            id="reset"
-          >
+            id="reset">
             Reset
           </button>
         </div>
@@ -691,8 +688,7 @@ const Day: React.FC = () => {
           <code
             className="TypeScript code"
             id="solution1"
-            style={{ display: "none" }}
-          >
+            style={{ display: "none" }}>
             <div dangerouslySetInnerHTML={{ __html: part1Code }} />
           </code>
         </pre>
@@ -706,7 +702,7 @@ const Day: React.FC = () => {
         </p>
       </div>
 
-      <div className="part-2-calculation column13">
+      <div className="part-2-calculation">
         <h3>Calculation:</h3>
         <p>
           Using the values from part 1 sumulation. We see that the pattern of
@@ -757,8 +753,7 @@ const Day: React.FC = () => {
           <code
             className="TypeScript"
             id="solution2"
-            style={{ display: "none" }}
-          >
+            style={{ display: "none" }}>
             <div dangerouslySetInnerHTML={{ __html: part2Code }} />
           </code>
         </pre>

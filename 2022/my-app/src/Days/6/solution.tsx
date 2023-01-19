@@ -166,7 +166,7 @@ const Day06: React.FC = () => {
         <h3>Input:</h3>
 
         <pre>
-          <code className="TypeScript limit-width">{exampleInput}</code>
+          <code className="TypeScript limit-width-33">{exampleInput}</code>
         </pre>
       </div>
 
@@ -202,8 +202,7 @@ const Day06: React.FC = () => {
           <code
             className="TypeScript"
             id="solution1"
-            style={{ display: "none" }}
-          >
+            style={{ display: "none" }}>
             <div dangerouslySetInnerHTML={{ __html: part1Code }} />
           </code>
         </pre>
@@ -217,21 +216,14 @@ const Day06: React.FC = () => {
         </p>
       </div>
 
-      <div className="input">
-        <h3>Input:</h3>
-
-        <pre>
-          <code className="TypeScript limit-width">{exampleInput}</code>
-        </pre>
-      </div>
-
       <div className="part-2-calculation">
         <h3>Calculation:</h3>
-        <pre className="no-space">
+        <pre className="no-space limit-width-50">
           <span className="red">mjqjpq</span>
           <span className="green">mgbljsphdztnvjfqwrcgsmlb</span>
+          <br></br>
+          <span className="grey">123456789...................19</span>
         </pre>
-        <pre className="no-space grey">123456789...................19</pre>
       </div>
 
       <div className="part-2-solution">
@@ -256,8 +248,7 @@ const Day06: React.FC = () => {
           <code
             className="TypeScript"
             id="solution2"
-            style={{ display: "none" }}
-          >
+            style={{ display: "none" }}>
             <div dangerouslySetInnerHTML={{ __html: part2Code }} />
           </code>
         </pre>

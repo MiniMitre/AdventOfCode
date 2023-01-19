@@ -162,7 +162,7 @@ const Day04: React.FC = () => {
         <h3>Input:</h3>
 
         <pre>
-          <code className="TypeScript limit-width">{exampleInput}</code>
+          <code className="TypeScript limit-width-33">{exampleInput}</code>
         </pre>
       </div>
 
@@ -199,8 +199,7 @@ const Day04: React.FC = () => {
           <code
             className="TypeScript"
             id="solution1"
-            style={{ display: "none" }}
-          >
+            style={{ display: "none" }}>
             <div dangerouslySetInnerHTML={{ __html: part1Code }} />
           </code>
         </pre>
@@ -209,14 +208,6 @@ const Day04: React.FC = () => {
       <div className="part">
         <h2>Part 2:</h2>
         <p>In how many assignment pairs do the ranges overlap?</p>
-      </div>
-
-      <div className="input">
-        <h3>Input:</h3>
-
-        <pre>
-          <code className="TypeScript limit-width">{exampleInput}</code>
-        </pre>
       </div>
 
       <div className="part-2-calculation">
@@ -254,8 +245,7 @@ const Day04: React.FC = () => {
           <code
             className="TypeScript"
             id="solution2"
-            style={{ display: "none" }}
-          >
+            style={{ display: "none" }}>
             <div dangerouslySetInnerHTML={{ __html: part2Code }} />
           </code>
         </pre>
