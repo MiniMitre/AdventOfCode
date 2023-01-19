@@ -13,34 +13,11 @@
   height: 6px;
 }
 
-.home {
-  text-align: center;
-  text-decoration: none;
-
-  padding: 1em;
-  color: white;
-  width: 100px;
-  max-height: 35px;
-
-  padding: 5px 15px;
-
-  border-radius: 10px;
-  border-style: solid;
-  border-color: darkgray;
-
-  margin: 0.5em;
-}
-
 .day {
   text-align: center;
   width: 80px;
   color: grey;
   pointer-events: none;
-}
-
-.home:not(.active):hover {
-  cursor: pointer;
-  background-color: #1565c0;
 }
 
 .navigation{

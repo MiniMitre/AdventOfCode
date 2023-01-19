@@ -56,9 +56,6 @@ const Topbar: React.FC = () => {
 
   return (
     <div className="topbar">
-      <NavLink to="/" className="home">
-        Home
-      </NavLink>
       <button
         className={`arrow-button left-arrow ${showLeftArrow}`}
         onClick={handleLeftArrowClick}>
