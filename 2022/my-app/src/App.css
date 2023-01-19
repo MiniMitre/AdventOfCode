@@ -1,147 +1,148 @@
-.container{
-    display: grid;
-    background-color: #333;
-    color: #fff;
-    max-width: 1550px;
-    margin: auto;
-    padding: 100px 2rem 300px 2rem;
-    grid-template-columns: 1fr 2fr 2fr;
+.container {
+  display: grid;
+  background-color: #333;
+  color: #fff;
+  max-width: 1550px;
+  margin: auto;
+  padding: 100px 2rem 300px 2rem;
+  grid-template-columns: 1fr 2fr 2fr;
 }
 
-.input{
-    grid-column-start: 1;
+.input {
+  grid-column-start: 1;
 }
 
-.input-text{
-    padding: 4px;
-    border: 1px solid #555;
-    background-color: #222;
+.input-text {
+  padding: 4px;
+  border: 1px solid #555;
+  background-color: #222;
 }
 
-.input p{
-    margin: 0;
+.input p {
+  margin: 0;
 }
 
-h2{
-    text-align: center;
+h2 {
+  text-align: center;
 }
 
-.iframe{
-    grid-column-start: 1;
-    grid-column-end: -1;
-    text-align: center;
+.iframe {
+  grid-column-start: 1;
+  grid-column-end: -1;
+  text-align: center;
 }
 
-.part{
-    grid-column-start: 1;
-    grid-column-end: -1;
-    border-bottom: 2px solid #DDD;
-    background-color: #555;
-    padding: 0 1rem;
+.part {
+  grid-column-start: 1;
+  grid-column-end: -1;
+  border-bottom: 2px solid #ddd;
+  background-color: #555;
+  padding: 0 1rem;
 }
 
-.iframe iframe{
-    width: 100%;
-    height: calc(100vh/4 + 50px);
+.iframe iframe {
+  width: 100%;
+  height: calc(100vh / 4 + 50px);
 }
 
-th, td {
-    padding: 15px;
+th,
+td {
+  padding: 15px;
 }
 
 table {
-    border-spacing: 0;
+  border-spacing: 0;
 }
 
-.explanation{
-    grid-column-start: 1;
-    grid-column-end: -1;
+.explanation {
+  grid-column-start: 1;
+  grid-column-end: -1;
 }
 
-.TypeScript{
-    font-size:20px;
-    width: fit-content;
-    background-color: #222;
-    padding: 2px 5px;
-    outline: 1px solid #555;
-    display: flex;
-    overflow-y: auto;
-    width: 100%;
+.TypeScript {
+  font-size: 20px;
+  width: fit-content;
+  background-color: #222;
+  padding: 2px 5px;
+  outline: 1px solid #555;
+  display: flex;
+  overflow-y: auto;
+  width: 100%;
 }
 
-.limit-width{
-    max-width: 33vw;
+.limit-width {
+  max-width: 33vw;
 }
 
-.typescript p{
-    margin: 0;
+.typescript p {
+  margin: 0;
 }
 
-.green{
-    color: #2F2;
+.green {
+  color: #2f2;
 }
 
-.red{
-    color: #F22;
+.red {
+  color: #f22;
 }
 
-.iframe a{
-    color: lightblue;
-    text-decoration: none;
-    display: inline;
+.iframe a {
+  color: lightblue;
+  text-decoration: none;
+  display: inline;
 }
 
-button{
-    margin: 1rem;
-    border: none;
-    border-radius: 10px;
-    background-color: #11E;
-    padding: 1rem;
+button {
+  margin: 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #11e;
+  padding: 1rem;
 
-    font-size: x-large;
-    font-weight: bold;
-    color: white;
+  font-size: x-large;
+  font-weight: bold;
+  color: white;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
-button:active{
-    transition: 100ms;
-    opacity: 50%;
-    transform: scale(0.95);
+button:active {
+  transition: 100ms;
+  opacity: 50%;
+  transform: scale(0.95);
 }
 
-.view-code-button{
-    display: flex;
-    align-items: center;
-    grid-column-start: 2;
-    grid-column-end: 3;
+.view-code-button {
+  display: flex;
+  align-items: center;
+  grid-column-start: 2;
+  grid-column-end: 3;
 }
 
-.part-1-calculation{
-    grid-column-start: 2;
-    grid-column-end: 3;
-    padding-left: 1rem;
+.part-1-calculation {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  padding-left: 1rem;
 }
 
-.part-2-calculation{
-    grid-column-start: 2;
-    grid-column-end: 3;
-    padding-left: 1rem;
+.part-2-calculation {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  padding-left: 1rem;
 }
 
-.part-1-solution{
-    grid-column-start: 3;
-    grid-column-end: 4;
-    padding-left: 1rem;
+.part-1-solution {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  padding-left: 1rem;
 }
 
-.part-2-solution{
-    grid-column-start: 3;
-    grid-column-end: 4;
-    padding-left: 1rem;
+.part-2-solution {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  padding-left: 1rem;
 }
 
-.part-1-solution p{
-    padding-bottom: 1rem;
+.part-1-solution p {
+  padding-bottom: 1rem;
 }

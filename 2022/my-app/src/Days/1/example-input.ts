@@ -1,5 +1,4 @@
-export const exampleInput: string =
-`1000
+export const exampleInput: string = `1000
 2000
 3000
 
@@ -12,4 +11,4 @@ export const exampleInput: string =
 8000
 9000
 
-10000`
+10000`;

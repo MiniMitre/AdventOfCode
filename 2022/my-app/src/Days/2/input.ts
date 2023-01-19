@@ -1,5 +1,4 @@
-export const myInput: string = 
-`C Y
+export const myInput: string = `C Y
 B Z
 B Z
 C Y
@@ -2498,4 +2497,4 @@ C Y
 C Z
 B X
 A X
-C Y`
+C Y`;

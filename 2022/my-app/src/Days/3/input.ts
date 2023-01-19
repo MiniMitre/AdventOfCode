@@ -1,5 +1,4 @@
-export const myInput: string = 
-`QLFdFCdlLcVqdvFLnFLSSShZwptfHHhfZZZpSwfmHp
+export const myInput: string = `QLFdFCdlLcVqdvFLnFLSSShZwptfHHhfZZZpSwfmHp
 rTJRjjbJTgzDJjdsRsfwtfNwtfmZpZNhmmzt
 bMdJjsjglnVMFCCc
 BZvZMBBBMTtZTgcCPdgtgQCrrV
@@ -298,4 +297,4 @@ tMGvrzzDGCDDddwLbgLvLwcm
 TWDWCzTZDGMZtzWWtsFhbRRqRQRjhbNQBBTh
 zgLgLHnnzCCvnsHSsZBZBsTRdD
 rslllhJjcQNNGjpWJlSRTRdwBVSSNTPVSdPB
-jGrGqjJfqccrfqGcGplrJpFvzggqmCtMzmsMnvMvvCgm`
+jGrGqjJfqccrfqGcGplrJpFvzggqmCtMzmsMnvMvvCgm`;

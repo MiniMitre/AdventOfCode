@@ -1,2 +1,1 @@
-export const exampleInput: string =
-`mjqjpqmgbljsphdztnvjfqwrcgsmlb`
+export const exampleInput: string = `mjqjpqmgbljsphdztnvjfqwrcgsmlb`;

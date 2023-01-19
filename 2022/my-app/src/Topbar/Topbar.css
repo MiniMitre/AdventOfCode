@@ -1,87 +1,86 @@
 /* Topbar.css */
 .topbar {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    background-color: #444;
-    color: #fff;
-    position: fixed;
-    width: 100%
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  background-color: #444;
+  color: #fff;
+  position: fixed;
+  width: 100%;
 }
 
-.home{
-    text-align: center;
-    text-decoration: none;
+.home {
+  text-align: center;
+  text-decoration: none;
 
-    padding: 1em;
-    color: white;
-    width: 100px;
-    max-height: 35px;
+  padding: 1em;
+  color: white;
+  width: 100px;
+  max-height: 35px;
 
-    padding: 5px 15px;
+  padding: 5px 15px;
 
-    border-radius: 10px;
-    border-style: solid;
-    border-color:darkgray;
-    
-    margin: 0.5em;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: darkgray;
+
+  margin: 0.5em;
 }
 
-.day{
-    text-align: center;
-    width: 80px;
-    color: grey;
-    pointer-events: none;
+.day {
+  text-align: center;
+  width: 80px;
+  color: grey;
+  pointer-events: none;
 }
 
-.home:not(.active):hover{
-    cursor: pointer;
-    background-color: #1565C0;
+.home:not(.active):hover {
+  cursor: pointer;
+  background-color: #1565c0;
 }
 
-.navigation{
-    display: flex;
-    overflow-y: auto;
+.navigation {
+  display: flex;
+  overflow-y: auto;
 
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .navigation a {
-    text-decoration: none;
-    display: block;
+  text-decoration: none;
+  display: block;
 
-    padding: 0.5rem;
-    margin: 0.5rem;
-    border-radius: 10px;
-    
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 10px;
 }
 
 .navigation a:not(.active):hover {
-    background: #1565C0;
+  background: #1565c0;
 }
 
 .active {
-    font-weight: bold;
-    background: darkgreen;
+  font-weight: bold;
+  background: darkgreen;
 }
 
 ::-webkit-scrollbar {
-    height: 12px;
-}
-  
-::-webkit-scrollbar-thumb {
-    background-color: #555;
-    border-radius: 10px;
-}
-  
-::-webkit-scrollbar-track {
-    background-color: #333;
-    border-radius: 10px;    
+  height: 12px;
 }
 
-.solved{
-    color: white;
-    pointer-events: all;
+::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #333;
+  border-radius: 10px;
+}
+
+.solved {
+  color: white;
+  pointer-events: all;
 }

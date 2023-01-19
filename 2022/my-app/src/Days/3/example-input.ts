@@ -1,7 +1,6 @@
-export const exampleInput: string =
-`vJrwpWtwJgWrhcsFMMfFFhFp
+export const exampleInput: string = `vJrwpWtwJgWrhcsFMMfFFhFp
 jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
 PmmdzqPrVvPwwTWBwg
 wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
 ttgJtRGJQctTZtZT
-CrZsJsPPZsGzwwsLwLmpwMDw`
+CrZsJsPPZsGzwwsLwLmpwMDw`;

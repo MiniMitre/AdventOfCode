@@ -1,5 +1,4 @@
-export const myInput: string = 
-`49-51,31-50
+export const myInput: string = `49-51,31-50
 96-99,2-95
 2-62,62-98
 34-76,10-59
@@ -998,4 +997,4 @@ export const myInput: string =
 18-18,17-72
 4-94,1-93
 32-38,33-71
-3-5,4-98`
+3-5,4-98`;

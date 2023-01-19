@@ -1,42 +1,42 @@
-.no-background{
+.no-background {
   background-color: inherit;
 }
 
-.outline{
+.outline {
   outline: 4px solid grey;
 }
 
-.center{
+.center {
   margin: auto;
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
 }
 
-.calculation{
+.calculation {
   max-height: 300px;
 }
 
-.calculation::-webkit-scrollbar{
+.calculation::-webkit-scrollbar {
   width: 10px;
 }
 
-.column13{
+.column13 {
   grid-column-start: 1;
   grid-column-end: 3;
 }
 
-.disabled{
+.disabled {
   pointer-events: none;
 }
 
-#simulation{
+#simulation {
   height: max-content;
   margin: auto;
 }
 
-#reset{
+#reset {
   background-image: url(./img/Reset.png);
-  background-size:contain;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   height: 88px;

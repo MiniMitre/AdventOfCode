@@ -1,2 +1,1 @@
-export const exampleInput: string =
-``
+export const exampleInput: string = ``;

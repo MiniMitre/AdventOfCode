@@ -1,5 +1,4 @@
-export const myInput: string = 
-`9609
+export const myInput: string = `9609
 7601
 7142
 5278
@@ -2248,4 +2247,4 @@ export const myInput: string =
 6751
 2763
 2781
-11806`
+11806`;
