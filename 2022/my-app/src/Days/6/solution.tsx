@@ -166,7 +166,7 @@ const Day06: React.FC = () => {
         <h3>Input:</h3>
 
         <pre>
-          <code className="TypeScript limit-width-33">{exampleInput}</code>
+          <code className="TypeScript limit-width-third">{exampleInput}</code>
         </pre>
       </div>
 
@@ -218,7 +218,7 @@ const Day06: React.FC = () => {
 
       <div className="part-2-calculation">
         <h3>Calculation:</h3>
-        <pre className="no-space limit-width-50">
+        <pre className="no-space limit-width-half">
           <span className="red">mjqjpq</span>
           <span className="green">mgbljsphdztnvjfqwrcgsmlb</span>
           <br></br>

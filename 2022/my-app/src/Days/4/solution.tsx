@@ -162,7 +162,7 @@ const Day04: React.FC = () => {
         <h3>Input:</h3>
 
         <pre>
-          <code className="TypeScript limit-width-33">{exampleInput}</code>
+          <code className="TypeScript limit-width-third">{exampleInput}</code>
         </pre>
       </div>
 

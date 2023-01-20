@@ -3,8 +3,7 @@
   display: flex;
   align-items: center;
   flex-direction: row;
-  background-color: #444;
-  color: #fff;
+  background-color: #006494;
   position: fixed;
   width: 100%;
 }
@@ -16,7 +15,7 @@
 .day {
   text-align: center;
   width: 80px;
-  color: grey;
+  color: darkgrey;
   pointer-events: none;
 }
 
@@ -39,17 +38,18 @@
 }
 
 .navigation a:not(.active):hover {
-  background: #1565c0;
-}
-
-.active {
-  font-weight: bold;
-  background: darkgreen;
+  background: #B5FED9;
+  color: black;
 }
 
 .solved {
   color: white;
   pointer-events: all;
+}
+
+.active {
+  font-weight: bold;
+  background: #307351;
 }
 
 .arrow-button{
@@ -67,7 +67,7 @@
 }
 
 .arrow-button:hover{
-    background: #1565C0;
+    background: #FA9F42;
 }
 
 .show-arrow{

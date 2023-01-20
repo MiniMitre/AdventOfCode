@@ -1,11 +1,12 @@
 .container {
   display: grid;
-  background-color: #333;
+  background-color: #0C120C;
   color: #fff;
   max-width: 1550px;
   margin: auto;
   padding: 70px 2rem 10rem 2rem;
-  grid-template-columns: 2fr 1fr 1fr 2fr;
+  grid-template-columns: 2fr 0.9fr 0.9fr 2fr;
+  /* 0.9fr instead of 1fr to account for 2rem gap */
   gap: 2rem;
 }
 
@@ -20,9 +21,10 @@ h2 {
 
 .part {
   grid-column: 1 / -1;
-  border-bottom: 2px solid #ddd;
-  background-color: #555;
+  background-color: #A799B7;
+  color: black;
   padding: 0 1rem;
+  border-radius: 1rem;
 }
 
 .iframe iframe {
@@ -67,12 +69,12 @@ button {
   margin: 1rem;
   border: none;
   border-radius: 10px;
-  background-color: #11e;
+  background-color: #FA9F42;
   padding: 1rem;
 
   font-size: x-large;
   font-weight: bold;
-  color: white;
+  color: black;
 
   cursor: pointer;
 }
@@ -89,17 +91,18 @@ button:active {
 }
 
 /* Limit width for code blocks */
-.limit-width-33 {
-  max-width: 33vw;
+.limit-width-third {
+  max-width: 25vw;
   overflow: auto;
 }
-.limit-width-50 {
-  max-width: 50vw;
+.limit-width-half {
+  max-width: 45vw;
   overflow: auto;
 }
 
 .input {
   grid-column: 1 / 2;
+  gap: 2rem;
 }
 
 .input-text {
@@ -156,10 +159,10 @@ pre::-webkit-scrollbar{
   }
 
   /* Remove width limit for code blocks */
-  .limit-width-33 {
+  .limit-width-third {
     max-width: 100%;
   }
-  .limit-width-50 {
+  .limit-width-half {
     max-width: 100%;
   }
   
