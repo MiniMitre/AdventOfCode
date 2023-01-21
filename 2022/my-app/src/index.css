@@ -7,9 +7,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: url("./img/Fan\ Wheel.png"), #0C120C;
+  background-position: center;
+  background-repeat: space;
   background-size: contain;
-  background-position-x: center;
-  background-repeat: repeat-y;
 }
 
 code {
