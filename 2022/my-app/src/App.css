@@ -1,6 +1,5 @@
 .container {
   display: grid;
-  background-color: #0C120C;
   color: #fff;
   max-width: 1550px;
   margin: auto;
@@ -40,6 +39,7 @@ h2 {
     font-size:20px;
     width: fit-content;
     max-width: 100%;
+    max-height: 50vh;
     background-color: #222;
     padding: 2px 5px;
     outline: 1px solid #555;
@@ -57,6 +57,10 @@ h2 {
 
 .red {
   color: #f22;
+}
+
+.white{
+  color: white;
 }
 
 .iframe a {

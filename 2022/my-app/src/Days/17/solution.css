@@ -2,8 +2,8 @@
   background-color: inherit;
 }
 
-.grey-border{
-  border: 4px solid grey;;
+.button-border{
+  border: 4px solid #FA9F42;
 }
 
 .flex-simulation {

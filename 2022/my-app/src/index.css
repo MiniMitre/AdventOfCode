@@ -6,7 +6,10 @@ body {
   font-size: x-large;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #333;
+  background: url("./img/Fan\ Wheel.png"), #0C120C;
+  background-size: contain;
+  background-position-x: center;
+  background-repeat: repeat-y;
 }
 
 code {

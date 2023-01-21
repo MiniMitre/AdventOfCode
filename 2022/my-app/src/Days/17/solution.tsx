@@ -339,26 +339,26 @@ function getButtonById(id: string): HTMLElement | null {
 function setButtonProperties(
   button: HTMLElement,
   innerHTML: string,
-  addClass: string,
+  addClass: string[],
   removeClasses: string[]
 ) {
   button.innerHTML = innerHTML;
 
-  button.classList.add(addClass);
+  addClass.forEach((className) => {
+    button.classList.add(className);
+  });
 
-  if (removeClasses) {
-    removeClasses.forEach((className) => {
-      button.classList.remove(className);
-    });
-  }
+  removeClasses.forEach((className) => {
+    button.classList.remove(className);
+  });
 }
 
 function setStartButton(button: HTMLElement) {
-  setButtonProperties(button, "Start Simulation", "green", ["red"]);
+  setButtonProperties(button, "Start Simulation", ["green"], ["red"]);
 }
 
 function setStopButton(button: HTMLElement) {
-  setButtonProperties(button, "Stop Simulation", "red", ["green"]);
+  setButtonProperties(button, "Stop Simulation", ["red"], ["green"]);
 }
 
 function toggleSimulation() {
@@ -376,7 +376,7 @@ function disableButton() {
   const button = getButtonById("simulation");
   if (!button) return;
 
-  setButtonProperties(button, "Complete!", "disabled", ["red"]);
+  setButtonProperties(button, "Complete!", ["disabled", "white"], ["red"]);
 }
 
 const rockStopNum: number = 2022;
@@ -406,10 +406,12 @@ const Day: React.FC = () => {
     if (button.innerHTML.includes("Stop")) {
       setStartButton(button);
     } else if (button.innerHTML.includes("Complete!")) {
-      setButtonProperties(button, "Start Simulation", "green", [
-        "disabled",
-        "red",
-      ]);
+      setButtonProperties(
+        button,
+        "Start Simulation",
+        ["green"],
+        ["disabled", "white"]
+      );
     }
 
     setGameField([]);
@@ -642,7 +644,7 @@ const Day: React.FC = () => {
         <div className="flex-simulation">
           <button
             onClick={toggleSimulation}
-            className="green no-background grey-border"
+            className="green no-background button-border"
             id="simulation">
             Start Simulation
           </button>
