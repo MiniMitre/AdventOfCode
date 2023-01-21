@@ -59,11 +59,11 @@
 }
 
 .left-arrow{
-    margin: auto 5px auto auto;
+    margin: auto 0.3rem;
 }
 
 .right-arrow{
-    margin: auto 5px;
+  margin: auto 0.3rem;
 }
 
 .arrow-button:hover{

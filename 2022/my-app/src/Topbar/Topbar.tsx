@@ -5,26 +5,31 @@ import "./Topbar.css";
 const Topbar: React.FC = () => {
   const navRef = useRef<HTMLUListElement>(null);
   const [showRightArrow, setShowRightArrow] = useState<string>("show-arrow");
-  const [showLeftArrow, setShowLeftArrow] = useState<string>("show-arrow");
+  const [showLeftArrow, setShowLeftArrow] = useState<string>("hide-arrow");
+
+  // Each list item is 112px wide
+  const listItemWidth = 112;
+  const listItemsCount = 25;
+  const topbarWidth = listItemWidth * listItemsCount;
+
+  const lastSolvedDay = 17;
 
   const handleLeftArrowClick = () => {
     if (navRef.current) {
-      navRef.current.scrollLeft -= navRef.current.clientWidth / 2;
+      navRef.current.scrollLeft -= navRef.current.scrollLeft;
     }
   };
 
   const handleRightArrowClick = () => {
     if (navRef.current) {
-      navRef.current.scrollLeft += navRef.current.clientWidth / 2;
+      navRef.current.scrollLeft +=
+        listItemWidth * lastSolvedDay -
+        navRef.current.clientWidth -
+        navRef.current.scrollLeft;
     }
   };
 
   React.useEffect(() => {
-    // Each list item is 112px wide
-    const listItemWidth = 112;
-    const listItemsCount = 25;
-    const topbarWidth = listItemWidth * listItemsCount;
-
     const showHideArrows = (clientWidth: number, scrollLeft: number) => {
       if (scrollLeft + clientWidth < topbarWidth) {
         setShowRightArrow("show-arrow");
