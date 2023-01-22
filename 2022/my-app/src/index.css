@@ -6,7 +6,7 @@ body {
   font-size: x-large;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url("./img/AdventOfCode_Logo.png"), #0C120C;
+  background: url("./img/AdventOfCode_Logo.png"), #0c120c;
   background-position: center;
   background-repeat: space;
 }

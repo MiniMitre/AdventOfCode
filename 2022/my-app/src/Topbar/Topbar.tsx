@@ -63,7 +63,8 @@ const Topbar: React.FC = () => {
     <div className="topbar">
       <button
         className={`arrow-button left-arrow ${showLeftArrow}`}
-        onClick={handleLeftArrowClick}>
+        onClick={handleLeftArrowClick}
+      >
         &lt;
       </button>
       <ul ref={navRef} className="navigation">
@@ -195,7 +196,8 @@ const Topbar: React.FC = () => {
       </ul>
       <button
         className={`arrow-button right-arrow ${showRightArrow}`}
-        onClick={handleRightArrowClick}>
+        onClick={handleRightArrowClick}
+      >
         &gt;
       </button>
     </div>

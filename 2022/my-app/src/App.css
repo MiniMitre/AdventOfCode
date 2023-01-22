@@ -20,7 +20,7 @@ h2 {
 
 .part {
   grid-column: 1 / -1;
-  background-color: #A799B7;
+  background-color: #a799b7;
   color: black;
   padding: 0 1rem;
   border-radius: 1rem;
@@ -35,16 +35,16 @@ h2 {
   grid-column: 1 / -1;
 }
 
-.TypeScript{
-    font-size:20px;
-    width: fit-content;
-    max-width: 100%;
-    max-height: 50vh;
-    background-color: #222;
-    padding: 2px 5px;
-    outline: 1px solid #555;
-    display: flex;
-    overflow-y: auto;
+.TypeScript {
+  font-size: 20px;
+  width: fit-content;
+  max-width: 100%;
+  max-height: 50vh;
+  background-color: #222;
+  padding: 2px 5px;
+  outline: 1px solid #555;
+  display: flex;
+  overflow-y: auto;
 }
 
 .typescript p {
@@ -59,7 +59,7 @@ h2 {
   color: #f22;
 }
 
-.white{
+.white {
   color: white;
 }
 
@@ -73,7 +73,7 @@ button {
   margin: 1rem;
   border: none;
   border-radius: 10px;
-  background-color: #FA9F42;
+  background-color: #fa9f42;
   padding: 1rem;
 
   font-size: x-large;
@@ -152,13 +152,12 @@ button:active {
 code::-webkit-scrollbar {
   height: 6px;
 }
-pre::-webkit-scrollbar{
+pre::-webkit-scrollbar {
   height: 6px;
 }
 
 @media (max-width: 700px) {
-
-  .container{
+  .container {
     gap: 1rem;
   }
 
@@ -169,23 +168,23 @@ pre::-webkit-scrollbar{
   .limit-width-half {
     max-width: 100%;
   }
-  
+
   .input {
     grid-column: 1 / -1;
   }
-  
+
   .part-1-calculation {
     grid-column: 1 / -1;
   }
-  
+
   .part-1-solution {
     grid-column: 1 / -1;
   }
-  
+
   .part-2-calculation {
     grid-column: 1 / -1;
   }
-  
+
   .part-2-solution {
     grid-column: 1 / -1;
   }

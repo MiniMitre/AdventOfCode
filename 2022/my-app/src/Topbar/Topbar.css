@@ -8,7 +8,7 @@
   width: 100%;
 }
 
-.navigation::-webkit-scrollbar{
+.navigation::-webkit-scrollbar {
   height: 6px;
 }
 
@@ -19,13 +19,13 @@
   pointer-events: none;
 }
 
-.navigation{
-    display: flex;
-    overflow: auto;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    scroll-behavior: smooth;
+.navigation {
+  display: flex;
+  overflow: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
 }
 
 .navigation a {
@@ -38,7 +38,7 @@
 }
 
 .navigation a:not(.active):hover {
-  background: #B5FED9;
+  background: #b5fed9;
   color: black;
 }
 
@@ -52,28 +52,28 @@
   background: #307351;
 }
 
-.arrow-button{
-    background: none;
-    border-radius: 50%;
-    padding: 8px 15px;
+.arrow-button {
+  background: none;
+  border-radius: 50%;
+  padding: 8px 15px;
 }
 
-.left-arrow{
-    margin: auto 0.3rem;
-}
-
-.right-arrow{
+.left-arrow {
   margin: auto 0.3rem;
 }
 
-.arrow-button:hover{
-    background: #FA9F42;
+.right-arrow {
+  margin: auto 0.3rem;
 }
 
-.show-arrow{
-    visibility: visible;
+.arrow-button:hover {
+  background: #fa9f42;
 }
 
-.hide-arrow{
-    visibility: hidden;
+.show-arrow {
+  visibility: visible;
+}
+
+.hide-arrow {
+  visibility: hidden;
 }
