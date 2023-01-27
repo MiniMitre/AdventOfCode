@@ -10,18 +10,21 @@ const Topbar: React.FC = () => {
   // Each list item is 112px wide
   const listItemWidth = 112;
   const listItemsCount = 25;
+  // Width of the entire list of items
   const topbarWidth = listItemWidth * listItemsCount;
 
   const lastSolvedDay = 17;
 
   const handleLeftArrowClick = () => {
     if (navRef.current) {
+      // Scroll to the start of the list
       navRef.current.scrollLeft -= navRef.current.scrollLeft;
     }
   };
 
   const handleRightArrowClick = () => {
     if (navRef.current) {
+      // Scroll to the last solved day
       navRef.current.scrollLeft +=
         listItemWidth * lastSolvedDay -
         navRef.current.clientWidth -
@@ -31,7 +34,7 @@ const Topbar: React.FC = () => {
 
   React.useEffect(() => {
     const showHideArrows = (clientWidth: number, scrollLeft: number) => {
-      if (scrollLeft + clientWidth < topbarWidth) {
+      if (scrollLeft + clientWidth < listItemWidth * lastSolvedDay) {
         setShowRightArrow("show-arrow");
       } else {
         setShowRightArrow("hide-arrow");
@@ -63,8 +66,7 @@ const Topbar: React.FC = () => {
     <div className="topbar">
       <button
         className={`arrow-button left-arrow ${showLeftArrow}`}
-        onClick={handleLeftArrowClick}
-      >
+        onClick={handleLeftArrowClick}>
         &lt;
       </button>
       <ul ref={navRef} className="navigation">
@@ -196,8 +198,7 @@ const Topbar: React.FC = () => {
       </ul>
       <button
         className={`arrow-button right-arrow ${showRightArrow}`}
-        onClick={handleRightArrowClick}
-      >
+        onClick={handleRightArrowClick}>
         &gt;
       </button>
     </div>

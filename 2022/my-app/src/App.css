@@ -36,7 +36,7 @@ h2 {
 }
 
 .TypeScript {
-  font-size: 20px;
+  font-size: large;
   width: fit-content;
   max-width: 100%;
   max-height: 50vh;
@@ -159,6 +159,10 @@ pre::-webkit-scrollbar {
 @media (max-width: 700px) {
   .container {
     gap: 1rem;
+  }
+
+  .TypeScript {
+    font-size: small;
   }
 
   /* Remove width limit for code blocks */
