@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Solving Advent Of Code",
+  "name": "Solving Advent Of Code problems with React",
   "icons": [
     {
       "src": "favicon.ico",
