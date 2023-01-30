@@ -13,9 +13,13 @@ h2 {
   text-align: center;
 }
 
-.iframe {
+.header {
   grid-column: 1 / -1;
   text-align: center;
+}
+
+.header a {
+  text-decoration: none;
 }
 
 .part {
@@ -26,17 +30,11 @@ h2 {
   border-radius: 1rem;
 }
 
-.iframe iframe {
-  width: 100%;
-  height: calc(100vh / 4 + 50px);
-}
-
 .explanation {
   grid-column: 1 / -1;
 }
 
 .TypeScript {
-  font-size: large;
   width: fit-content;
   max-width: 100%;
   max-height: 50vh;
@@ -61,12 +59,6 @@ h2 {
 
 .white {
   color: white;
-}
-
-.iframe a {
-  color: lightblue;
-  text-decoration: none;
-  display: inline;
 }
 
 button {

@@ -149,9 +149,6 @@ const Day06: React.FC = () => {
       <div className="iframe">
         <h1>Day 6:</h1>
         <iframe title="Day" src="https://adventofcode.com/2022/day/6"></iframe>
-        <p>
-          From <a href="https://adventofcode.com">Advent Of Code</a>
-        </p>
       </div>
 
       <div className="part">
@@ -202,8 +199,7 @@ const Day06: React.FC = () => {
           <code
             className="TypeScript"
             id="solution1"
-            style={{ display: "none" }}
-          >
+            style={{ display: "none" }}>
             <div dangerouslySetInnerHTML={{ __html: part1Code }} />
           </code>
         </pre>
@@ -249,8 +245,7 @@ const Day06: React.FC = () => {
           <code
             className="TypeScript"
             id="solution2"
-            style={{ display: "none" }}
-          >
+            style={{ display: "none" }}>
             <div dangerouslySetInnerHTML={{ __html: part2Code }} />
           </code>
         </pre>

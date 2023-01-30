@@ -616,15 +616,10 @@ const Day: React.FC = () => {
 
   return (
     <div className="container">
-      <div className="iframe">
-        <h1>Day 17:</h1>
-        <iframe
-          title="Day17"
-          src="https://adventofcode.com/2022/day/17"
-        ></iframe>
-        <p>
-          From <a href="https://adventofcode.com">Advent Of Code</a>
-        </p>
+      <div className="header">
+        <h1>
+          <a href="https://adventofcode.com/2022/day/17">Day 17</a>
+        </h1>
       </div>
 
       <div className="part">
@@ -646,15 +641,13 @@ const Day: React.FC = () => {
           <button
             onClick={toggleSimulation}
             className="green no-background button-border"
-            id="simulation"
-          >
+            id="simulation">
             Start Simulation
           </button>
           <button
             onClick={resetSimulation}
             className="no-background"
-            id="reset"
-          >
+            id="reset">
             Reset
           </button>
         </div>
@@ -693,8 +686,7 @@ const Day: React.FC = () => {
           <code
             className="TypeScript code"
             id="solution1"
-            style={{ display: "none" }}
-          >
+            style={{ display: "none" }}>
             <div dangerouslySetInnerHTML={{ __html: part1Code }} />
           </code>
         </pre>
@@ -760,8 +752,7 @@ const Day: React.FC = () => {
           <code
             className="TypeScript"
             id="solution2"
-            style={{ display: "none" }}
-          >
+            style={{ display: "none" }}>
             <div dangerouslySetInnerHTML={{ __html: part2Code }} />
           </code>
         </pre>
