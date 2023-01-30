@@ -123,12 +123,10 @@ part2Code = hljs.highlight(part2Code, { language: "TypeScript" }).value;
 const Day01: React.FC = () => {
   return (
     <div className="container">
-      <div className="iframe">
-        <h1>Day 3:</h1>
-        <iframe title="Day" src="https://adventofcode.com/2022/day/3"></iframe>
-        <p>
-          From <a href="https://adventofcode.com">Advent Of Code</a>
-        </p>
+      <div className="header">
+        <h1>
+          <a href="https://adventofcode.com/2022/day/3">Day 3</a>
+        </h1>
       </div>
 
       <div className="part">
@@ -191,8 +189,7 @@ const Day01: React.FC = () => {
           <code
             className="TypeScript"
             id="solution1"
-            style={{ display: "none" }}
-          >
+            style={{ display: "none" }}>
             <div dangerouslySetInnerHTML={{ __html: part1Code }} />
           </code>
         </pre>
@@ -238,8 +235,7 @@ const Day01: React.FC = () => {
           <code
             className="TypeScript"
             id="solution2"
-            style={{ display: "none" }}
-          >
+            style={{ display: "none" }}>
             <div dangerouslySetInnerHTML={{ __html: part2Code }} />
           </code>
         </pre>

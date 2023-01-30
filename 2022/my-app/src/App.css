@@ -20,6 +20,11 @@ h2 {
 
 .header a {
   text-decoration: none;
+  color: white;
+}
+
+.header a:hover {
+  color: blue;
 }
 
 .part {
