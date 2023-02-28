@@ -65,7 +65,7 @@ function convertRockShapes(rockShapes: string[]): string[] {
 }
 
 function printRockShapes(rockShape: string[]) {
-  let gameplayField = convertRockShapes(rockShape.slice(0, 11));
+  let gameplayField = convertRockShapes(rockShape.slice(0, 9));
 
   //Add | before each line
   gameplayField = gameplayField.map((line) => `|${line}`);
@@ -750,7 +750,7 @@ const Day: React.FC = () => {
       <div className="explanation">
         <pre>
           <code
-            className="TypeScript"
+            className="TypeScript code"
             id="solution2"
             style={{ display: "none" }}>
             <div dangerouslySetInnerHTML={{ __html: part2Code }} />

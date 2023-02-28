@@ -12,10 +12,6 @@
   flex-wrap: wrap;
 }
 
-.calculation {
-  max-height: 300px;
-}
-
 .calculation::-webkit-scrollbar {
   width: 10px;
 }

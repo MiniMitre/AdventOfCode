@@ -187,7 +187,7 @@ const Day01: React.FC = () => {
       <div className="explanation">
         <pre>
           <code
-            className="TypeScript"
+            className="TypeScript code"
             id="solution1"
             style={{ display: "none" }}>
             <div dangerouslySetInnerHTML={{ __html: part1Code }} />
@@ -233,7 +233,7 @@ const Day01: React.FC = () => {
       <div className="explanation">
         <pre>
           <code
-            className="TypeScript"
+            className="TypeScript code"
             id="solution2"
             style={{ display: "none" }}>
             <div dangerouslySetInnerHTML={{ __html: part2Code }} />
