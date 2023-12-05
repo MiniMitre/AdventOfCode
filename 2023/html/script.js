@@ -1,21 +1,19 @@
 // Function to fetch and display file content
-async function readFileContent() {
+async function readFileContent(filename) {
   try {
-    const response = await fetch("http://localhost:3000/readfile/1");
+    const response = await fetch(`http://localhost:3000/readfile/${filename}`);
     if (!response.ok) {
       throw new Error("Failed to fetch file");
     }
 
     const fileContent = await response.text();
-    console.log(fileContent);
+    return fileContent;
   } catch (error) {
     console.error(error.message);
   }
 }
 
-// Call the function when the page is loaded
-window.onload = readFileContent;
-
-if (document.body.classList.contains("page-1")) {
-  console.log(".");
+async function loadInputs(day) {
+  const exampleInput = await readFileContent(`${day}-example`);
+  const myInput = await readFileContent(`day`);
 }
