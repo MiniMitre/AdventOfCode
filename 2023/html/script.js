@@ -1,5 +1,5 @@
 // Function to fetch and display file content
-async function readFileContent(filename: string) {
+async function readFileContent(filename) {
   try {
     const response = await fetch(`http://localhost:3000/readfile/${filename}`);
     if (!response.ok) {
@@ -13,7 +13,9 @@ async function readFileContent(filename: string) {
   }
 }
 
-async function loadInputs(day: string) {
+async function loadInputs(day) {
   const exampleInput = await readFileContent(`${day}-example`);
   const myInput = await readFileContent(`${day}`);
 }
+
+console.log(document.body.classList);
